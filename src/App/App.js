@@ -1,0 +1,31 @@
+import kind from '@enact/core/kind';
+import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
+import React from 'react';
+
+import PickerPanel from '../views/PickerPanel';
+import ScrollerPanel from '../views/ScrollerPanel';
+
+import css from './App.less';
+import { cpus } from 'os';
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const App = kind({
+	name: 'App',
+
+	styles: {
+		css,
+		className: 'app'
+	},
+
+	render: (props) => (
+		<Router>
+		<div {...props}>
+		  <Route path="/picker" component={PickerPanel} />
+		  <Route path="/scroller" component={ScrollerPanel} />
+		</div>
+	  </Router>
+	)
+});
+
+export default MoonstoneDecorator(App);
