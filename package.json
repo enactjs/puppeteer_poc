@@ -14,7 +14,6 @@
 		"license": "enact license",
 		"test": "enact test start --single-run",
 		"test-watch": "enact test start",
-		"puppeteer": "node performance/puppeteer.js",
 		"puppeteer-results": "node performance/model.js"
 	},
 	"license": "UNLICENSED",
