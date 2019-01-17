@@ -12,7 +12,7 @@
 		"clean": "enact clean",
 		"lint": "enact lint .",
 		"license": "enact license",
-		"test": "enact test start --single-run",
+		"test": "jest --detectOpenHandles",
 		"test-watch": "enact test start",
 		"puppeteer-results": "node performance/model.js"
 	},
@@ -43,7 +43,11 @@
 		"yargs": "^12.0.5"
 	},
 	"devDependencies": {
+		"chalk": "^2.4.2",
 		"devtools-timeline-model": "git@github.com:paulirish/devtools-timeline-model.git#latestbump",
-		"puppeteer": "^1.11.0"
+		"jest": "^23.6.0",
+		"prettier": "^1.15.3",
+		"puppeteer": "^1.11.0",
+		"rimraf": "^2.6.3"
 	}
 }
