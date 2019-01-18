@@ -22,11 +22,14 @@ const userTiming = Array.from(results._namedTracks.values())[0];
 const timingEvents = userTiming.asyncEvents;
 
 // filter our component update data
-const updateData = timingEvents.filter((item, index) => (
+const updateData = timingEvents.filter((item, index) => {
+	// is this the target component data
+	const isComponent = item.name === `⚛ ${component} [update]`;
+	const isPicker = component === 'Picker';
 	// Picker contains a sub-component also named 'Picker', which we don't want to calculate
 	// so we isolate the parent Picker (wrapped by MarqueeController [update] > MarqueeController.getChildContext)
-	item.name === `⚛ ${component} [update]` && timingEvents[index-2].name === `⚛ MarqueeController [update]`
-));
+	return isPicker ? isComponent && timingEvents[index-2].name === `⚛ MarqueeController [update]` : isComponent;
+});
 const updates = updateData.length;
 // calculate average update timing
 const updateTiming = updateData.reduce((accumulator, currentValue) => accumulator + currentValue.duration, 0) / updates;
@@ -37,4 +40,4 @@ const mountTiming = timingEvents.find((item) => item.name === `⚛ ${component} 
 // console.log(results);
 
 console.log(`Mount timing: ${mountTiming}`);
-console.log(`Update timing (average): ${updateTiming}`);
+console.log(`Update timing (average of ${updates}): ${updateTiming}`);
