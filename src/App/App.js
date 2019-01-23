@@ -6,9 +6,8 @@ import PickerPanel from '../views/PickerPanel';
 import ScrollerPanel from '../views/ScrollerPanel';
 
 import css from './App.less';
-import { cpus } from 'os';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const App = kind({
 	name: 'App',
@@ -20,11 +19,11 @@ const App = kind({
 
 	render: (props) => (
 		<Router>
-		<div {...props}>
-		  <Route path="/picker" component={PickerPanel} />
-		  <Route path="/scroller" component={ScrollerPanel} />
-		</div>
-	  </Router>
+			<div {...props}>
+				<Route path="/picker" component={PickerPanel} />
+				<Route path="/scroller" component={ScrollerPanel} />
+			</div>
+		</Router>
 	)
 });
 
