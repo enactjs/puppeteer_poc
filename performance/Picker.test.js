@@ -4,7 +4,7 @@ const {getFileName} = require('./utils');
 
 describe('Picker', () => {
 	it('increment', async () => {
-		const filename = getFileName('picker');
+		const filename = getFileName('Picker');
 		const incrementer = '[class^="Picker__incrementer"]';
 
 		const browser = await puppeteer.launch({headless: true});
@@ -31,10 +31,12 @@ describe('Picker', () => {
 
 		FPS(filename);
 		Update(filename, 'Changeable');
+		// Tests for now will just fail, because we need real thresholds
+		expect(false).toBe(true);
 	});
 
 	it('should mount picker under threshold', async () => {
-		const filename = getFileName('picker');
+		const filename = getFileName('Picker');
 
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
@@ -51,5 +53,7 @@ describe('Picker', () => {
 		await browser.close();
 
 		Mount(filename, 'Changeable');
+		// Tests for now will just fail, because we need real thresholds
+		expect(false).toBe(true);
 	});
 });
