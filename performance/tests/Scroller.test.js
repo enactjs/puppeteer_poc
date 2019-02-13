@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount, Update} = require('./TraceModel.js');
-const {getFileName} = require('./utils');
+const {FPS, Mount, Update} = require('../TraceModel');
+const {getFileName} = require('../utils');
+const TestResults = require('../TestResults');
 
 const filename = getFileName('Scroller');
 
@@ -44,9 +45,9 @@ describe( 'Scroller', () => {
 		await page.tracing.stop();
 		await browser.close();
 
-		FPS(filename);
-		// Tests for now will just fail, because we need real thresholds
-		expect(false).toBe(true);
+		const actual = FPS(filename);
+		const expected = 100;
+		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 
 	it('should have mount time under threshold', async () => {
@@ -64,8 +65,9 @@ describe( 'Scroller', () => {
 		await page.tracing.stop();
 		await browser.close();
 
-		Mount(filename, 'Scroller');
-		// Tests for now will just fail, because we need real thresholds
-		expect(false).toBe(true);
+		const actual = Mount(filename, 'Scroller');
+		const expected = 100
+
+		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 });

@@ -4,7 +4,6 @@ const DevtoolsTimelineModel = require('devtools-timeline-model');
 const FPS = (filename) => {
 	const events = fs.readFileSync(filename, 'utf8');
 	const model = new DevtoolsTimelineModel(events);
-
 	const results = model.frameModel();
 
 	let counter = 0;
@@ -12,19 +11,13 @@ const FPS = (filename) => {
 	const avgDuration = results._frames.reduce((accumulator, currentValue) => {
 		if (!currentValue.idle) {
 			counter += 1;
-			if (1000 / currentValue.duration < 55) {
-				fps[currentValue._mainFrameId] = 1000 / currentValue.duration;
-			}
-			return accumulator + currentValue.duration;
+			return accumulator + 1000 / currentValue.duration;
 		} else {
 			return accumulator;
 		}
 	}, 0) / counter;
 
-	console.log(`Average Duration of Frames: ${avgDuration}`);
-	console.log(`Average FPS: ${fps}`);
-
-	return fps;
+	return avgDuration;
 };
 
 const Mount = (filename, component) => {
@@ -37,8 +30,6 @@ const Mount = (filename, component) => {
 
 	// retrieve mount timing
 	const mountTiming = timingEvents.find((item) => item.name === `⚛ ${component} [mount]`).duration;
-
-	console.log(`Mount timing: ${mountTiming}`);
 
 	return mountTiming;
 };
@@ -59,7 +50,6 @@ const Update = (filename, component) => {
 	const updates = updateData.length;
 	const avgUpdateTiming = updateData.reduce((accumulator, currentValue) => accumulator + currentValue.duration, 0) / updates;
 
-	console.log(`Update timing (average of ${updates}): ${avgUpdateTiming}`);
 	return avgUpdateTiming;
 };
 

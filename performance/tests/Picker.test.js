@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount, Update} = require('./TraceModel.js');
-const {getFileName} = require('./utils');
+const {FPS, Mount, Update} = require('../TraceModel');
+const {getFileName} = require('../utils');
+const TestResults = require('../TestResults');
 
 describe('Picker', () => {
 	it('increment', async () => {
 		const filename = getFileName('Picker');
-		const incrementer = '[class^="Picker__incrementer"]';
+		const incrementer = '[class^="Picker_incrementer"]';
 
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
@@ -29,10 +30,12 @@ describe('Picker', () => {
 		await page.tracing.stop();
 		await browser.close();
 
-		FPS(filename);
-		Update(filename, 'Changeable');
-		// Tests for now will just fail, because we need real thresholds
-		expect(false).toBe(true);
+		const actualFPS = FPS(filename);
+		TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+
+		const actualUpdateTime = Update(filename, 'Changeable');
+		TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
+
 	});
 
 	it('should mount picker under threshold', async () => {
@@ -52,8 +55,8 @@ describe('Picker', () => {
 		await page.tracing.stop();
 		await browser.close();
 
-		Mount(filename, 'Changeable');
-		// Tests for now will just fail, because we need real thresholds
-		expect(false).toBe(true);
+		const actualMount = Mount(filename, 'Changeable');
+		TestResults.addResult({component: 'Picker', type: 'Mount', actualValue: actualMount});
 	});
 });
+
