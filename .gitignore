@@ -15,3 +15,5 @@ dist
 npm-debug.log
 
 .env
+# ignoring this for now, but we will add it back when we build out the infrastructure more 
+package-lock.json
