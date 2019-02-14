@@ -91,7 +91,7 @@ Mounting is very is pretty simple. We just need to find the top component for th
 ```
 
 ### Google Sheets
-So currently we're sending our info to a Google Sheets file. We need an environment variable to put in the link. You can easily use a `.env` file to declare your variables.
+We have the ability to send data to a Google Spreadsheet. If you wish to use this inclide an environment variable. 
 
 ```
 // .env
