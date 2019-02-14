@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount, Update} = require('../TraceModel');
+const {FPS, Mount} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
@@ -46,7 +46,6 @@ describe( 'Scroller', () => {
 		await browser.close();
 
 		const actual = FPS(filename);
-		const expected = 100;
 		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 
@@ -66,7 +65,6 @@ describe( 'Scroller', () => {
 		await browser.close();
 
 		const actual = Mount(filename, 'Scroller');
-		const expected = 100
 
 		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});

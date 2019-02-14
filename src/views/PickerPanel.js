@@ -1,5 +1,4 @@
 import kind from '@enact/core/kind';
-import {Panel, Header} from '@enact/moonstone/Panels';
 import React from 'react';
 import Picker from '@enact/moonstone/Picker';
 
@@ -14,8 +13,7 @@ const MainPanel = kind({
 	name: 'MainPanel',
 
 	render: (props) => (
-		<Panel {...props}>
-			<Header title="Hello world!" />
+		<div {...props}>
 			<Picker
 				wrap
 				joined
@@ -23,7 +21,7 @@ const MainPanel = kind({
 			>
 				{airports}
 			</Picker>
-		</Panel>
+		</div>
 	)
 });
 
