@@ -1,5 +1,4 @@
 import kind from '@enact/core/kind';
-import {Panel} from '@enact/moonstone/Panels';
 import React from 'react';
 import Scroller from '@enact/moonstone/Scroller';
 import Item from '@enact/moonstone/Item';
@@ -14,13 +13,13 @@ const MainPanel = kind({
 	name: 'MainPanel',
 
 	render: (props) => (
-		<Panel {...props}>
+		<div {...props}>
 			<Scroller>
 				<Group childComponent={Item}>
 					{itemData}
 				</Group>
 			</Scroller>
-		</Panel>
+		</div>
 	)
 });
 

@@ -1,9 +1,10 @@
-const fs = require('fs');
+require('dotenv').config();
 const fetch = require('node-fetch');
 
 const {version: ReactVersion} = require('react/package.json');
 const {version: EnactVersion} = require('@enact/core/package.json');
-const config = require('../config.js');
+// eslint-disable-next-line no-undef
+const API_URL = process.env.API_URL;
 
 const TestResult = module.exports = {
 	results: [],
@@ -11,13 +12,16 @@ const TestResult = module.exports = {
 		const result = {ReactVersion, EnactVersion, component, type, actualValue};
 		TestResult.results.push(result);
 		// batch this in the future
-		fetch(config.API_LINK, {
-			method: 'POST',
-			body: JSON.stringify(result),
-			headers: {'Content-Type': 'application/json'}}
-		)
-			.then(res => res.text())
-			.then(json => console.log(json));
+		if (API_URL) {
+			// eslint-disable-next-line no-console
+			fetch(API_URL, {
+				method: 'POST',
+				body: JSON.stringify(result),
+				headers: {'Content-Type': 'application/json'}}
+			)
+				.then(res => console.log(res.json()))
+				.catch(err => console.log(err));
+		}
 	},
 	getResults: () => {
 		return TestResult.results;
