@@ -38,7 +38,7 @@ describe('ExpandableItem', () => {
 
 	});
 
-	xit('should mount ExpandableItem under threshold', async () => {
+	it('should mount ExpandableItem under threshold', async () => {
 		const filename = getFileName('ExpandableItem');
 
 		const browser = await puppeteer.launch({headless: true});
