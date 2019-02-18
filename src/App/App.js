@@ -2,7 +2,7 @@ import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
 import React from 'react';
 
-import PickerPanel from '../views/PickerPanel';
+import Picker from '../views/Picker';
 import ScrollerPanel from '../views/ScrollerPanel';
 import ExpandableItem from '../views/ExpandableItem';
 
@@ -21,7 +21,7 @@ const App = kind({
 	render: (props) => (
 		<Router>
 			<div {...props}>
-				<Route path="/picker" component={PickerPanel} />
+				<Route path="/picker" component={Picker} />
 				<Route path="/scroller" component={ScrollerPanel} />
 				<Route path="/expandableItem" component={ExpandableItem} />
 			</div>

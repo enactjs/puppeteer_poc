@@ -38,6 +38,36 @@ describe('Picker', () => {
 
 	});
 
+	it('keypress', async () => {
+		const filename = getFileName('Picker');
+
+		const browser = await puppeteer.launch({headless: false});
+		const page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
+
+		await page.goto('http://localhost:8080/picker');
+		await page.tracing.start({path: filename, screenshots: false});
+		await page.waitFor(500);
+		await page.keyboard.press('ArrowRight');
+		await page.keyboard.press('ArrowRight');
+		await page.keyboard.press('ArrowRight');
+		await page.keyboard.press('ArrowRight');
+		await page.keyboard.press('ArrowRight');
+		await page.waitFor(200);
+
+		await page.tracing.stop();
+		await browser.close();
+
+		const actualFPS = FPS(filename);
+		TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+
+		const actualUpdateTime = Update(filename, 'Changeable');
+		TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
+	});
+
 	it('should mount picker under threshold', async () => {
 		const filename = getFileName('Picker');
 
