@@ -4,72 +4,76 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Picker', () => {
-	it('increment', async () => {
-		const filename = getFileName('Picker');
-		const incrementer = '[class^="Picker_incrementer"]';
+	describe('click', () => {
+		it('increment', async () => {
+			const filename = getFileName('Picker');
+			const incrementer = '[class^="Picker_incrementer"]';
 
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
+			const browser = await puppeteer.launch({headless: true});
+			const page = await browser.newPage();
+			await page.setViewport({
+				width: 1920,
+				height: 1080
+			});
+
+			await page.goto('http://localhost:8080/picker');
+			await page.tracing.start({path: filename, screenshots: false});
+			await page.waitFor(500);
+			await page.click(incrementer);
+			await page.waitFor(200);
+			await page.click(incrementer);
+			await page.waitFor(200);
+			await page.click(incrementer);
+			await page.waitFor(200);
+			await page.click(incrementer);
+			await page.waitFor(200);
+
+			await page.tracing.stop();
+			await browser.close();
+
+			const actualFPS = FPS(filename);
+			TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+
+			const actualUpdateTime = Update(filename, 'Changeable');
+			TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
+
 		});
-
-		await page.goto('http://localhost:8080/picker');
-		await page.tracing.start({path: filename, screenshots: false});
-		await page.waitFor(500);
-		await page.click(incrementer);
-		await page.waitFor(200);
-		await page.click(incrementer);
-		await page.waitFor(200);
-		await page.click(incrementer);
-		await page.waitFor(200);
-		await page.click(incrementer);
-		await page.waitFor(200);
-
-		await page.tracing.stop();
-		await browser.close();
-
-		const actualFPS = FPS(filename);
-		TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
-
-		const actualUpdateTime = Update(filename, 'Changeable');
-		TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
-
 	});
 
-	it('keypress', async () => {
-		const filename = getFileName('Picker');
+	describe('keypress', () => {
+		it('increment', async () => {
+			const filename = getFileName('Picker');
 
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
+			const browser = await puppeteer.launch({headless: true});
+			const page = await browser.newPage();
+			await page.setViewport({
+				width: 1920,
+				height: 1080
+			});
+
+			await page.goto('http://localhost:8080/picker');
+			await page.tracing.start({path: filename, screenshots: false});
+			await page.waitFor(500);
+			await page.keyboard.press('ArrowRight');
+			await page.waitFor(200);
+			await page.keyboard.press('ArrowRight');
+			await page.waitFor(200);
+			await page.keyboard.press('ArrowRight');
+			await page.waitFor(200);
+			await page.keyboard.press('ArrowRight');
+			await page.waitFor(200);
+			await page.keyboard.press('ArrowRight');
+			await page.waitFor(200);
+
+			await page.tracing.stop();
+			await browser.close();
+
+			const actualFPS = FPS(filename);
+			TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+
+			const actualUpdateTime = Update(filename, 'Changeable');
+			TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
 		});
-
-		await page.goto('http://localhost:8080/picker');
-		await page.tracing.start({path: filename, screenshots: false});
-		await page.waitFor(500);
-		await page.keyboard.press('ArrowRight');
-		await page.waitFor(200);
-		await page.keyboard.press('ArrowRight');
-		await page.waitFor(200);
-		await page.keyboard.press('ArrowRight');
-		await page.waitFor(200);
-		await page.keyboard.press('ArrowRight');
-		await page.waitFor(200);
-		await page.keyboard.press('ArrowRight');
-		await page.waitFor(200);
-
-		await page.tracing.stop();
-		await browser.close();
-
-		const actualFPS = FPS(filename);
-		TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
-
-		const actualUpdateTime = Update(filename, 'Changeable');
-		TestResults.addResult({component: 'Picker', type: 'Update', actualValue: actualUpdateTime});
 	});
 
 	it('should mount picker under threshold', async () => {
