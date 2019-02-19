@@ -23,6 +23,31 @@ async function scrollAtPoint (
 }
 
 describe( 'Scroller', () => {
+	describe('ScrollButton', () => {
+		it('scrolls down', async () => {
+			jest.setTimeout(30000);
+			const browser = await puppeteer.launch({headless: true});
+			const page = await browser.newPage();
+			await page.setViewport({
+				width: 1920,
+				height: 1080
+			});
+			await page.goto('http://localhost:8080/scroller');
+			await page.tracing.start({path: filename, screenshots: true});
+
+			await page.focus('[aria-label="scroll down"]');
+			await page.keyboard.down('Enter');
+			await page.keyboard.down('Enter');
+			await page.waitFor(2000);
+
+			await page.tracing.stop();
+			await browser.close();
+
+			const actual = FPS(filename);
+			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+		});
+	});
+
 	it('scrolls down', async () => {
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
