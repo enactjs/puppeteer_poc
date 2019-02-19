@@ -5,6 +5,7 @@ import React from 'react';
 import PickerPanel from '../views/PickerPanel';
 import ScrollerPanel from '../views/ScrollerPanel';
 import ExpandableItem from '../views/ExpandableItem';
+import Popup from '../views/Popup';
 
 import css from './App.less';
 
@@ -24,6 +25,7 @@ const App = kind({
 				<Route path="/picker" component={PickerPanel} />
 				<Route path="/scroller" component={ScrollerPanel} />
 				<Route path="/expandableItem" component={ExpandableItem} />
+				<Route path="/popup" component={Popup} />
 			</div>
 		</Router>
 	)
