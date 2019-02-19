@@ -41,7 +41,7 @@ describe('Picker', () => {
 	it('keypress', async () => {
 		const filename = getFileName('Picker');
 
-		const browser = await puppeteer.launch({headless: false});
+		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -52,9 +52,13 @@ describe('Picker', () => {
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitFor(500);
 		await page.keyboard.press('ArrowRight');
+		await page.waitFor(200);
 		await page.keyboard.press('ArrowRight');
+		await page.waitFor(200);
 		await page.keyboard.press('ArrowRight');
+		await page.waitFor(200);
 		await page.keyboard.press('ArrowRight');
+		await page.waitFor(200);
 		await page.keyboard.press('ArrowRight');
 		await page.waitFor(200);
 
