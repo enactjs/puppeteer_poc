@@ -4,6 +4,7 @@ import React from 'react';
 
 import Picker from '../views/Picker';
 import ScrollerPanel from '../views/ScrollerPanel';
+import Panels from '../views/Panels';
 import ExpandableItem from '../views/ExpandableItem';
 
 import css from './App.less';
@@ -21,6 +22,7 @@ const App = kind({
 	render: (props) => (
 		<Router>
 			<div {...props}>
+				<Route path="/panels" component={Panels} />
 				<Route path="/picker" component={Picker} />
 				<Route path="/scroller" component={ScrollerPanel} />
 				<Route path="/expandableItem" component={ExpandableItem} />
