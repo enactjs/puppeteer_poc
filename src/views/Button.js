@@ -6,7 +6,7 @@ const MainPanel = kind({
 	name: 'MainPanel',
 
 	render: () => (
-		<Button>Puppeteer!</Button>
+		<Button id="testButton">Puppeteer!</Button>
 	)
 });
 
