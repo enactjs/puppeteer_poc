@@ -5,7 +5,7 @@ Application to perform automated performance testing on Enact components.
 We utilize puppeteer to get chrome performance traces.
 
 
-To run all you have to do is start the server and run the test suite on it.
+To run all you have to do is start the server in one terminal window and run the test suite in another:
 ```
 npm run serve
 npm run test
@@ -13,14 +13,15 @@ npm run test
 
 ## Adding Tests
 
-This project works a bit differently than a regular test suite for now. We have Jest installed more as a test runner, but we don't really use assertions for now. We use it more to gather and report numbers.
+This project works a bit differently than a regular test suite for now. We have Jest installed more as a test runner, but we don't really use assertions for now. We use it more to gather and report numbers. Test files are in the `performance/tests` directory.
 
 ### FPS
 
 To gather average FPS time, we just use the `FPS` function from `TraceModel`.
-For FPS we don't need to specify any components to look for as it will just grab the SPF for the entire page.
+For FPS we don't need to specify any components to look for as it will just grab the FPS for the entire page.
 
 ### Update
+
 To get React Update Times we just use the `Update` function from `TraceModel`. For update we need to specify the top component in the tree that belongs to the component you're trying to test.
 
 Example: Picker is wrapped by numerous Higher-order Components, and the top on is `Changeable`. So we'll use `Update(filename, 'Changeable');` to get the average update times.
@@ -33,7 +34,7 @@ It's pretty easy to test FPS and Update in the same test because they both typic
 const TestResults = require('../TestResults');
 const {FPS, Update} = require('../TraceModel');
 
-it('increment', async () => {
+	it('collects Picker increment FPS and update time', async () => {
 		const filename = getFileName('Picker');
 		const incrementer = '[class^="Picker_incrementer"]';
 
@@ -68,7 +69,7 @@ it('increment', async () => {
 Mounting is very is pretty simple. We just need to find the top component for the component we're trying to test like `Mount(filename, 'Changeable');`. We can check the React Devtools to see which component is at the top of a specific component.
 
 ```javascript
-	it('should mount picker under threshold', async () => {
+	it('collects Picker mount data', async () => {
 		const filename = getFileName('Picker');
 
 		const browser = await puppeteer.launch({headless: true});
@@ -91,7 +92,8 @@ Mounting is very is pretty simple. We just need to find the top component for th
 ```
 
 ### Google Sheets
-We have the ability to send data to a Google Spreadsheet. If you wish to use this inclide an environment variable. 
+
+We have the ability to send data to a Google Spreadsheet. If you wish to use this include an environment variable.
 
 ```
 // .env
