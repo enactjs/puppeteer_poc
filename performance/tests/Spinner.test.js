@@ -6,7 +6,7 @@ const TestResults = require('../TestResults');
 const filename = getFileName('Spinner');
 
 describe( 'Spinner', () => {
-	it('should have mount time under threshold', async () => {
+	it('mount', async () => {
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
@@ -16,6 +16,7 @@ describe( 'Spinner', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/spinner');
+		await page.waitForSelector('#Spinner');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

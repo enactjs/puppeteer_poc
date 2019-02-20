@@ -7,7 +7,7 @@ const MainPanel = kind({
 
 	render: (props) => (
 		<div {...props}>
-			<Spinner>Loading message...</Spinner>
+			<Spinner id="Spinner">Loading message...</Spinner>
 		</div>
 	)
 });
