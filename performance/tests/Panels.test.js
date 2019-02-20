@@ -4,7 +4,7 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Panels', () => {
-	it('change panel', async () => {
+	it('change panel FPS and Update', async () => {
 		const filename = getFileName('Panels');
 		const panel = '[class^="Panel_body"]';
 
@@ -35,7 +35,7 @@ describe('Panels', () => {
 
 	});
 
-	it('should mount panels under threshold', async () => {
+	it('mount time', async () => {
 		const filename = getFileName('Panels');
 
 		const browser = await puppeteer.launch({headless: true});
@@ -56,4 +56,3 @@ describe('Panels', () => {
 		TestResults.addResult({component: 'Panels', type: 'Mount', actualValue: actualMount});
 	});
 });
-

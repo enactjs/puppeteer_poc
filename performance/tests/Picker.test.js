@@ -5,7 +5,7 @@ const TestResults = require('../TestResults');
 
 describe('Picker', () => {
 	describe('click', () => {
-		it('increment', async () => {
+		it('increment FPS and Update', async () => {
 			const filename = getFileName('Picker');
 			const incrementer = '[class^="Picker_incrementer"]';
 
@@ -41,7 +41,7 @@ describe('Picker', () => {
 	});
 
 	describe('keypress', () => {
-		it('increment', async () => {
+		it('increment FPS and Update', async () => {
 			const filename = getFileName('Picker');
 
 			const browser = await puppeteer.launch({headless: true});
@@ -76,7 +76,7 @@ describe('Picker', () => {
 		});
 	});
 
-	it('should mount picker under threshold', async () => {
+	it('mount time', async () => {
 		const filename = getFileName('Picker');
 
 		const browser = await puppeteer.launch({headless: true});
@@ -97,4 +97,3 @@ describe('Picker', () => {
 		TestResults.addResult({component: 'Picker', type: 'Mount', actualValue: actualMount});
 	});
 });
-

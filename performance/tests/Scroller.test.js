@@ -24,7 +24,7 @@ async function scrollAtPoint (
 
 describe( 'Scroller', () => {
 	describe('ScrollButton', () => {
-		it('scrolls down', async () => {
+		it('scroll down FPS', async () => {
 			jest.setTimeout(30000);
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
@@ -48,33 +48,35 @@ describe( 'Scroller', () => {
 		});
 	});
 
-	it('scrolls down', async () => {
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
+	describe('mouse wheel', () => {
+		it('scroll down FPS', async () => {
+			const browser = await puppeteer.launch({headless: true});
+			const page = await browser.newPage();
+			await page.setViewport({
+				width: 1920,
+				height: 1080
+			});
+			await page.goto('http://localhost:8080/scroller');
+			await page.tracing.start({path: filename, screenshots: false});
+
+			await scrollAtPoint(page, [600, 400], [0, 100]);
+			await page.waitFor(200);
+			await scrollAtPoint(page, [600, 400], [0, 100]);
+			await page.waitFor(200);
+			await scrollAtPoint(page, [600, 400], [0, 100]);
+			await page.waitFor(200);
+			await scrollAtPoint(page, [600, 400], [0, 100]);
+			await page.waitFor(200);
+
+			await page.tracing.stop();
+			await browser.close();
+
+			const actual = FPS(filename);
+			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 		});
-		await page.goto('http://localhost:8080/scroller');
-		await page.tracing.start({path: filename, screenshots: false});
-
-		await scrollAtPoint(page, [600, 400], [0, 100]);
-		await page.waitFor(200);
-		await scrollAtPoint(page, [600, 400], [0, 100]);
-		await page.waitFor(200);
-		await scrollAtPoint(page, [600, 400], [0, 100]);
-		await page.waitFor(200);
-		await scrollAtPoint(page, [600, 400], [0, 100]);
-		await page.waitFor(200);
-
-		await page.tracing.stop();
-		await browser.close();
-
-		const actual = FPS(filename);
-		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 
-	it('should have mount time under threshold', async () => {
+	it('mount time', async () => {
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({

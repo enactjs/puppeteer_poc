@@ -4,7 +4,7 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('ExpandableItem', () => {
-	it('open and close', async () => {
+	it('open and close FPS and Update', async () => {
 		const filename = getFileName('ExpandableItem');
 		const openClose = '[class^="ExpandableItem_expandableItem"]';
 
@@ -38,7 +38,7 @@ describe('ExpandableItem', () => {
 
 	});
 
-	it('should mount ExpandableItem under threshold', async () => {
+	it('mount time', async () => {
 		const filename = getFileName('ExpandableItem');
 
 		const browser = await puppeteer.launch({headless: true});
@@ -59,4 +59,3 @@ describe('ExpandableItem', () => {
 		TestResults.addResult({component: 'ExpandableItem', type: 'Mount', actualValue: actualMount});
 	});
 });
-
