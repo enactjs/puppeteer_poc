@@ -7,6 +7,8 @@ import ScrollerPanel from '../views/ScrollerPanel';
 import Panels from '../views/Panels';
 import ExpandableItem from '../views/ExpandableItem';
 import Marquee from '../views/Marquee';
+import Spinner from '../views/Spinner';
+import Button from '../views/Button';
 
 import css from './App.less';
 
@@ -28,6 +30,8 @@ const App = kind({
 				<Route path="/scroller" component={ScrollerPanel} />
 				<Route path="/expandableItem" component={ExpandableItem} />
 				<Route path="/marquee" component={Marquee} />
+				<Route path="/spinner" component={Spinner} />
+				<Route path="/button" component={Button} />
 			</div>
 		</Router>
 	)
