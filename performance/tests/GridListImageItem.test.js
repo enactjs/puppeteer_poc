@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount} = require('../TraceModel');
+const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
@@ -24,8 +24,5 @@ describe( 'GridListImageItem', () => {
 
 		const actualMount = Mount(filename, 'Spottable');
 		TestResults.addResult({component: 'GridListImageItem', type: 'Mount', actualValue: actualMount});
-
-		const actualFPS = FPS(filename);
-		TestResults.addResult({component: 'GridListImageItem', type: 'Frames Per Second', actualValue: actualFPS});
 	});
 });
