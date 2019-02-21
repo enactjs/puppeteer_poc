@@ -9,6 +9,7 @@ import ExpandableItem from '../views/ExpandableItem';
 import Marquee from '../views/Marquee';
 import Spinner from '../views/Spinner';
 import Button from '../views/Button';
+import VirtualList from '../views/VirtualList';
 
 import css from './App.less';
 
@@ -32,6 +33,7 @@ const App = kind({
 				<Route path="/marquee" component={Marquee} />
 				<Route path="/spinner" component={Spinner} />
 				<Route path="/button" component={Button} />
+				<Route path="/virtualList" component={VirtualList} />
 			</div>
 		</Router>
 	)
