@@ -10,6 +10,17 @@ function getFileName (testName) {
 	return filename;
 }
 
+async function scrollAtPoint (page, selector, amount) {
+	await page.evaluate((scrollerSelector, scrollAmount) => {
+		let evt = document.createEvent('MouseEvents');
+		evt.initEvent('wheel', true, true);
+		evt.deltaY = scrollAmount;
+		const node = document.querySelector(scrollerSelector);
+		node.dispatchEvent(evt);
+	}, selector, amount);
+}
+
 module.exports = {
-	getFileName
+	getFileName,
+	scrollAtPoint
 };

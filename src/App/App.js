@@ -8,6 +8,7 @@ import Panels from '../views/Panels';
 import ExpandableItem from '../views/ExpandableItem';
 import Spinner from '../views/Spinner';
 import Button from '../views/Button';
+import VirtualList from '../views/VirtualList';
 
 
 import css from './App.less';
@@ -31,6 +32,7 @@ const App = kind({
 				<Route path="/expandableItem" component={ExpandableItem} />
 				<Route path="/spinner" component={Spinner} />
 				<Route path="/button" component={Button} />
+				<Route path="/virtualList" component={VirtualList} />
 			</div>
 		</Router>
 	)
