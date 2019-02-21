@@ -10,6 +10,7 @@ import Marquee from '../views/Marquee';
 import Spinner from '../views/Spinner';
 import Button from '../views/Button';
 import VirtualList from '../views/VirtualList';
+import GridListImageItem from '../views/GridListImageItem';
 
 import css from './App.less';
 
@@ -34,6 +35,7 @@ const App = kind({
 				<Route path="/spinner" component={Spinner} />
 				<Route path="/button" component={Button} />
 				<Route path="/virtualList" component={VirtualList} />
+				<Route path="/gridListImageItem" component={GridListImageItem} />
 			</div>
 		</Router>
 	)
