@@ -8,7 +8,7 @@ describe('Marquee', () => {
 		const filename = getFileName('Marquee');
 		const MarqueeText = '[class^="Marquee"]';
 
-		const browser = await puppeteer.launch({headless: false});
+		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -17,7 +17,7 @@ describe('Marquee', () => {
 
 		await page.goto('http://localhost:8080/marquee');
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.waitFor(500);
+		await page.waitForSelector('#Marquee');
 		await page.hover(MarqueeText);
 		await page.waitFor(500);
 
@@ -44,6 +44,7 @@ describe('Marquee', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/marquee');
+		await page.waitForSelector('#Marquee');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
