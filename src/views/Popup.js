@@ -7,7 +7,7 @@ class MainPanel extends React.Component {
 		super(props);
 
 		this.state = {
-			open: false
+			open: true
 		};
 	}
 
@@ -20,9 +20,9 @@ class MainPanel extends React.Component {
 
 		return (
 			<div>
-				<Button data-component-id="open" onClick={this.handleToggle}>open</Button>
-				<Popup open={open}>
-					<Button data-component-id="close" onClick={this.handleToggle}>close</Button>
+				<Button id="popup-open" onClick={this.handleToggle}>open</Button>
+				<Popup id="PopupTest" open={open}>
+					<Button id="popup-close" onClick={this.handleToggle}>close</Button>
 				</Popup>
 			</div>
 		);

@@ -6,18 +6,20 @@ const TestResults = require('../TestResults');
 describe('Popup', () => {
 	it('open and close', async () => {
 		const filename = getFileName('Popup');
-		const open = '[data-component-id="open"]';
-		const close = '[data-component-id="close"]';
+		const open = '#popup-open';
+		const close = '#popup-close';
 
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
-			height: 1080
+			height: 880
 		});
 
 		await page.goto('http://localhost:8080/popup');
 		await page.tracing.start({path: filename, screenshots: false});
+		await page.waitForSelector('#PopupTest');
+		await page.click(close);
 		await page.waitFor(500);
 		await page.click(open);
 		await page.waitFor(500);
@@ -46,12 +48,12 @@ describe('Popup', () => {
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
-			height: 1080
+			height: 880
 		});
 
-		await page.tracing.start({path: filename, screenshots: false});
+		await page.tracing.start({path: filename, screenshots: true});
 		await page.goto('http://localhost:8080/popup');
-		await page.waitFor(2000);
+		await page.waitForSelector('#PopupTest');
 
 		await page.tracing.stop();
 		await browser.close();
