@@ -8,7 +8,6 @@ const filename = getFileName('Scroller');
 describe( 'Scroller', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
-			jest.setTimeout(30000);
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -34,7 +33,7 @@ describe( 'Scroller', () => {
 	describe('mouse wheel', () => {
 
 		it('scrolls down', async () => {
-			const browser = await puppeteer.launch({headless: false});
+			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,

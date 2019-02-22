@@ -21,6 +21,8 @@ const TestResult = module.exports = {
 			)
 				.then(res => console.log(res.json()))
 				.catch(err => console.log(err));
+		} else {
+			console.log(result);
 		}
 	},
 	getResults: () => {

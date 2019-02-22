@@ -8,7 +8,6 @@ const filename = getFileName('VirtualList');
 describe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
-			jest.setTimeout(30000);
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
