@@ -1,11 +1,11 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount} = require('../TraceModel');
+const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('Scroller');
+const filename = getFileName('VirtualList');
 
-describe( 'Scroller', () => {
+describe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
 			jest.setTimeout(30000);
@@ -15,11 +15,16 @@ describe( 'Scroller', () => {
 				width: 1920,
 				height: 1080
 			});
-			await page.goto('http://localhost:8080/scroller');
+			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});
-
+			await page.waitForSelector('#VirtualList');
 			await page.focus('[aria-label="scroll down"]');
 			await page.keyboard.down('Enter');
+			await page.waitFor(200);
+			await page.keyboard.down('Enter');
+			await page.waitFor(200);
+			await page.keyboard.down('Enter');
+			await page.waitFor(200);
 			await page.keyboard.down('Enter');
 			await page.waitFor(2000);
 
@@ -27,38 +32,41 @@ describe( 'Scroller', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+
+			const actualUpdate = Update(filename, 'ui:VirtualListBase');
+			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actualUpdate});
 		});
 	});
 
-	describe('mouse wheel', () => {
-
+	describe('mousewheel', () => {
 		it('scrolls down', async () => {
-			const browser = await puppeteer.launch({headless: false});
+			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
 				height: 1080
 			});
-			await page.goto('http://localhost:8080/scroller');
-			await page.tracing.start({path: filename, screenshots: true});
 
-			const scroller = '#Scroller';
+			const VirtualList = '#VirtualList';
 
-			await scrollAtPoint(page, scroller, 1000);
+			await page.goto('http://localhost:8080/virtualList');
+			await page.tracing.start({path: filename, screenshots: false});
+			await page.waitForSelector(VirtualList);
+			await scrollAtPoint(page, VirtualList, 1000);
 			await page.waitFor(200);
-			await scrollAtPoint(page, scroller, 1000);
+			await scrollAtPoint(page, VirtualList, 1000);
 			await page.waitFor(200);
-			await scrollAtPoint(page, scroller, 1000);
+			await scrollAtPoint(page, VirtualList, 1000);
 			await page.waitFor(200);
-			await scrollAtPoint(page, scroller, 1000);
+			await scrollAtPoint(page, VirtualList, 1000);
 			await page.waitFor(200);
 
 			await page.tracing.stop();
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
 		});
 	});
 
@@ -71,14 +79,14 @@ describe( 'Scroller', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/scroller');
+		await page.goto('http://localhost:8080/virtualList');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
 		await browser.close();
 
-		const actual = Mount(filename, 'Scroller');
+		const actual = Mount(filename, 'VirtualList');
 
-		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+		TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
 	});
 });

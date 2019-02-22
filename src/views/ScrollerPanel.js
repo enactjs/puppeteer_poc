@@ -1,26 +1,17 @@
 import kind from '@enact/core/kind';
 import React from 'react';
 import Scroller from '@enact/moonstone/Scroller';
-import Item from '@enact/moonstone/Item';
-import Group from '@enact/ui/Group';
 
-const itemData = [];
-for (let i = 0; i < 100; i++) {
-	itemData.push(`Item ${i}`);
-}
-
-const MainPanel = kind({
-	name: 'MainPanel',
+const ScrollerTest = kind({
+	name: 'Scroller',
 
 	render: (props) => (
-		<div {...props}>
-			<Scroller>
-				<Group childComponent={Item}>
-					{itemData}
-				</Group>
+		<div {...props} style={{height: '700px'}}>
+			<Scroller id="Scroller" focusableScrollbar>
+				<div style={{height: '5000px'}} />
 			</Scroller>
 		</div>
 	)
 });
 
-export default MainPanel;
+export default ScrollerTest;
