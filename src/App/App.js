@@ -11,6 +11,7 @@ import Spinner from '../views/Spinner';
 import Button from '../views/Button';
 import VirtualList from '../views/VirtualList';
 import Item from '../views/Item';
+import Slider from '../views/Slider';
 
 import css from './App.less';
 
@@ -36,6 +37,7 @@ const App = kind({
 				<Route path="/button" component={Button} />
 				<Route path="/virtualList" component={VirtualList} />
 				<Route path="/item" component={Item} />
+				<Route path="/slider" component={Slider} />
 			</div>
 		</Router>
 	)
