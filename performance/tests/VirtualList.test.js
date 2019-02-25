@@ -3,11 +3,11 @@ const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('VirtualList');
-
 describe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
+			const filename = getFileName('VirtualList');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -40,6 +40,8 @@ describe('VirtualList', () => {
 
 	describe('mousewheel', () => {
 		it('scrolls down', async () => {
+			const filename = getFileName('VirtualList');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -73,6 +75,8 @@ describe('VirtualList', () => {
 	});
 
 	it('mount', async () => {
+		const filename = getFileName('VirtualList');
+
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({

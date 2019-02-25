@@ -3,10 +3,10 @@ const {FPS, Mount} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('Spinner');
-
 describe( 'Spinner', () => {
 	it('mount', async () => {
+		const filename = getFileName('Spinner');
+
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({

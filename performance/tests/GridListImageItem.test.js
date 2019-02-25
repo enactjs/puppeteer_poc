@@ -3,10 +3,10 @@ const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('GridListImageItem');
 
 describe( 'GridListImageItem', () => {
 	it('mount', async () => {
+		const filename = getFileName('GridListImageItem');
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
