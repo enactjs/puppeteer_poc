@@ -27,7 +27,7 @@ describe( 'Scroller', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'Scroller', type: 'Frames Per Second', actualValue: actual});
 		});
 	});
 
@@ -58,7 +58,7 @@ describe( 'Scroller', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'Scroller', type: 'Frames Per Second', actualValue: actual});
 		});
 	});
 
