@@ -16,7 +16,7 @@ import Slider from '../views/Slider';
 
 import css from './App.less';
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {HashRouter as Router, Route} from 'react-router-dom';
 
 const App = kind({
 	name: 'App',

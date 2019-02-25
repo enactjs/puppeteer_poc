@@ -16,7 +16,7 @@ describe('Picker', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/picker');
+			await page.goto('http://localhost:8080/#/picker');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
 			await page.click(incrementer);
@@ -51,7 +51,7 @@ describe('Picker', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/picker');
+			await page.goto('http://localhost:8080/#/picker');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
 			await page.keyboard.press('ArrowRight');
@@ -87,7 +87,7 @@ describe('Picker', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/picker');
+		await page.goto('http://localhost:8080/#/picker');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

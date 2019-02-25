@@ -15,7 +15,7 @@ describe('Button', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/button');
+			await page.goto('http://localhost:8080/#/button');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
 
@@ -56,7 +56,7 @@ describe('Button', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/button');
+			await page.goto('http://localhost:8080/#/button');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#testButton');
 			await page.focus('#testButton');
@@ -96,7 +96,7 @@ describe('Button', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/button');
+		await page.goto('http://localhost:8080/#/button');
 		await page.waitForSelector('#testButton');
 
 		await page.tracing.stop();

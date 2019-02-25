@@ -14,7 +14,7 @@ describe( 'Scroller', () => {
 				width: 1920,
 				height: 1080
 			});
-			await page.goto('http://localhost:8080/scroller');
+			await page.goto('http://localhost:8080/#/scroller');
 			await page.tracing.start({path: filename, screenshots: false});
 
 			await page.focus('[aria-label="scroll down"]');
@@ -39,7 +39,7 @@ describe( 'Scroller', () => {
 				width: 1920,
 				height: 1080
 			});
-			await page.goto('http://localhost:8080/scroller');
+			await page.goto('http://localhost:8080/#/scroller');
 			await page.tracing.start({path: filename, screenshots: true});
 
 			const scroller = '#Scroller';
@@ -70,7 +70,7 @@ describe( 'Scroller', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/scroller');
+		await page.goto('http://localhost:8080/#/scroller');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

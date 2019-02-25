@@ -15,7 +15,7 @@ describe('ExpandableItem', () => {
 			height: 1080
 		});
 
-		await page.goto('http://localhost:8080/expandableItem');
+		await page.goto('http://localhost:8080/#/expandableItem');
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitFor(500);
 		await page.click(openClose);
@@ -49,7 +49,7 @@ describe('ExpandableItem', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/expandableItem');
+		await page.goto('http://localhost:8080/#/expandableItem');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

@@ -15,7 +15,7 @@ describe('Marquee', () => {
 			height: 1080
 		});
 
-		await page.goto('http://localhost:8080/marquee');
+		await page.goto('http://localhost:8080/#/marquee');
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitForSelector('#Marquee');
 		await page.hover(MarqueeText);
@@ -43,7 +43,7 @@ describe('Marquee', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/marquee');
+		await page.goto('http://localhost:8080/#/marquee');
 		await page.waitForSelector('#Marquee');
 		await page.waitFor(2000);
 
