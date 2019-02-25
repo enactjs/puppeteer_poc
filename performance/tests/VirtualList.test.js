@@ -31,10 +31,10 @@ describe('VirtualList', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
 
 			const actualUpdate = Update(filename, 'ui:VirtualListBase');
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actualUpdate});
+			TestResults.addResult({component: 'VirtualList', type: 'Update', actualValue: actualUpdate});
 		});
 	});
 
@@ -65,7 +65,10 @@ describe('VirtualList', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
+
+			const actualUpdate = Update(filename, 'ui:VirtualListBase');
+			TestResults.addResult({component: 'VirtualList', type: 'Update', actualValue: actualUpdate});
 		});
 	});
 
