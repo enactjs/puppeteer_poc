@@ -15,7 +15,7 @@ describe('Slider', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/#/slider');
+			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#Slider');
 			const {x: posX, y: posY} = await page.evaluate(() => {
@@ -54,7 +54,7 @@ describe('Slider', () => {
 				height: 1080
 			});
 
-			await page.goto('http://localhost:8080/#/slider');
+			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#Slider');
 			await page.focus('#Slider');
@@ -87,7 +87,7 @@ describe('Slider', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/#/slider');
+		await page.goto('http://localhost:8080/slider');
 		await page.waitForSelector('#Slider');
 		await page.waitFor(2000);
 

@@ -15,7 +15,7 @@ describe('Item', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/#/item');
+		await page.goto('http://localhost:8080/item');
 		await page.waitForSelector('#Item');
 		await page.waitFor(2000);
 		await page.tracing.stop();

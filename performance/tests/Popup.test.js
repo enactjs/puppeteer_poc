@@ -16,7 +16,7 @@ describe('Popup', () => {
 			height: 1080
 		});
 
-		await page.goto('http://localhost:8080/#/popup');
+		await page.goto('http://localhost:8080/popup');
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitForSelector('#PopupTest');
 		await page.click(close);
@@ -52,7 +52,7 @@ describe('Popup', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: true});
-		await page.goto('http://localhost:8080/#/popup');
+		await page.goto('http://localhost:8080/popup');
 		await page.waitForSelector('#PopupTest');
 
 		await page.tracing.stop();

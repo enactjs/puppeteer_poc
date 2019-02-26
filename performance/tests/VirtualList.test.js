@@ -14,7 +14,7 @@ describe('VirtualList', () => {
 				width: 1920,
 				height: 1080
 			});
-			await page.goto('http://localhost:8080/#/virtualList');
+			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#VirtualList');
 			await page.focus('[aria-label="scroll down"]');
@@ -51,7 +51,7 @@ describe('VirtualList', () => {
 
 			const VirtualList = '#VirtualList';
 
-			await page.goto('http://localhost:8080/#/virtualList');
+			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector(VirtualList);
 			await scrollAtPoint(page, VirtualList, 1000);
@@ -85,7 +85,7 @@ describe('VirtualList', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/#/virtualList');
+		await page.goto('http://localhost:8080/virtualList');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

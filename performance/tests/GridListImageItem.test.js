@@ -15,7 +15,7 @@ describe( 'GridListImageItem', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/#/GridListImageItem');
+		await page.goto('http://localhost:8080/GridListImageItem');
 		await page.waitForSelector('#GridListImageItem');
 		await page.waitFor(2000);
 

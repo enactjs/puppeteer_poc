@@ -15,7 +15,7 @@ describe('Panels', () => {
 			height: 1080
 		});
 
-		await page.goto('http://localhost:8080/#/panels');
+		await page.goto('http://localhost:8080/panels');
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitFor(1000);
 		await page.click(panel);
@@ -46,7 +46,7 @@ describe('Panels', () => {
 		});
 
 		await page.tracing.start({path: filename, screenshots: false});
-		await page.goto('http://localhost:8080/#/panels');
+		await page.goto('http://localhost:8080/panels');
 		await page.waitForSelector('#testPanel1');
 
 		await page.tracing.stop();
