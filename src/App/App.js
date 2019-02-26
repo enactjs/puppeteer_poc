@@ -14,6 +14,7 @@ import GridListImageItem from '../views/GridListImageItem';
 import Item from '../views/Item';
 import Slider from '../views/Slider';
 import MarqueeMultiple from '../views/MarqueeMultiple';
+import ViewManager from '../views/ViewManager';
 
 import css from './App.less';
 
@@ -43,6 +44,7 @@ const App = kind({
 				<Route path="/item" component={Item} />
 				<Route path="/slider" component={Slider} />
 				<Route path="/marqueeMultiple" component={MarqueeMultiple} />
+				<Route path="/viewManager" component={ViewManager} />
 			</div>
 		</Router>
 	)
