@@ -106,9 +106,6 @@ describe('Marquee', () => {
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
-
-				const actualUpdateTime = Update(filename, 'ui:MarqueeDecorator');
-				TestResults.addResult({component: 'Marquee', type: 'Update', actualValue: actualUpdateTime});
 			}
 		});
 
@@ -135,9 +132,6 @@ describe('Marquee', () => {
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
-
-				const actualUpdateTime = Update(filename, 'ui:MarqueeDecorator');
-				TestResults.addResult({component: 'Marquee', type: 'Update', actualValue: actualUpdateTime});
 			}
 		});
 	});
