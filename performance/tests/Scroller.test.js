@@ -3,11 +3,12 @@ const {FPS, Mount} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('Scroller');
 
 describe( 'Scroller', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
+			const filename = getFileName('Scroller');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -26,13 +27,15 @@ describe( 'Scroller', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'Scroller', type: 'Frames Per Second', actualValue: actual});
 		});
 	});
 
 	describe('mouse wheel', () => {
 
 		it('scrolls down', async () => {
+			const filename = getFileName('Scroller');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -40,7 +43,7 @@ describe( 'Scroller', () => {
 				height: 1080
 			});
 			await page.goto('http://localhost:8080/#/scroller');
-			await page.tracing.start({path: filename, screenshots: true});
+			await page.tracing.start({path: filename, screenshots: false});
 
 			const scroller = '#Scroller';
 
@@ -57,11 +60,13 @@ describe( 'Scroller', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'Scroller', type: 'Frames Per Second', actualValue: actual});
 		});
 	});
 
 	it('mount', async () => {
+		const filename = getFileName('Scroller');
+
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({

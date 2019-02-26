@@ -3,11 +3,11 @@ const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
-const filename = getFileName('VirtualList');
-
 describe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
+			const filename = getFileName('VirtualList');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -31,15 +31,17 @@ describe('VirtualList', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
 
 			const actualUpdate = Update(filename, 'ui:VirtualListBase');
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actualUpdate});
+			TestResults.addResult({component: 'VirtualList', type: 'Update', actualValue: actualUpdate});
 		});
 	});
 
 	describe('mousewheel', () => {
 		it('scrolls down', async () => {
+			const filename = getFileName('VirtualList');
+
 			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
@@ -65,11 +67,16 @@ describe('VirtualList', () => {
 			await browser.close();
 
 			const actual = FPS(filename);
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
+
+			const actualUpdate = Update(filename, 'ui:VirtualListBase');
+			TestResults.addResult({component: 'VirtualList', type: 'Update', actualValue: actualUpdate});
 		});
 	});
 
 	it('mount', async () => {
+		const filename = getFileName('VirtualList');
+
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
