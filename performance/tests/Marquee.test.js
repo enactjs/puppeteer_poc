@@ -29,7 +29,6 @@ describe('Marquee', () => {
 
 		const actualUpdateTime = Update(filename, 'Skinnable');
 		TestResults.addResult({component: 'Marquee', type: 'Update', actualValue: actualUpdateTime});
-
 	});
 
 	it('should mount Marquee under threshold', async () => {
@@ -52,6 +51,34 @@ describe('Marquee', () => {
 
 		const actualMount = Mount(filename, 'Skinnable');
 		TestResults.addResult({component: 'Marquee', type: 'Mount', actualValue: actualMount});
+	});
+
+	describe('Multiple Marquees', () => {
+		it('mounts', async () => {
+			const counts = [10, 100, 1000];
+			for (let index = 0; index < counts.length; index++) {
+				const count = counts[index];
+				const filename = getFileName('Marquee');
+
+				const browser = await puppeteer.launch({headless: true});
+				const page = await browser.newPage();
+				await page.setViewport({
+					width: 1920,
+					height: 1080
+				});
+
+				await page.tracing.start({path: filename, screenshots: false});
+				await page.goto(`http://localhost:8080/#/marqueeMultiple/${count}`);
+				await page.waitForSelector('#Container');
+				await page.waitFor(500);
+
+				await page.tracing.stop();
+				await browser.close();
+
+				const actualMount = Mount(filename, 'MarqueeMultiple');
+				TestResults.addResult({component: 'Marquee', type: 'Mount', actualValue: actualMount});
+			}
+		});
 	});
 });
 
