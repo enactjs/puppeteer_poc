@@ -17,7 +17,7 @@ import MarqueeMultiple from '../views/MarqueeMultiple';
 
 import css from './App.less';
 
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const App = kind({
 	name: 'App',
@@ -42,7 +42,7 @@ const App = kind({
 				<Route path="/gridListImageItem" component={GridListImageItem} />
 				<Route path="/item" component={Item} />
 				<Route path="/slider" component={Slider} />
-				<Route path="/marqueeMultiple/:count" component={MarqueeMultiple} />
+				<Route path="/marqueeMultiple" component={MarqueeMultiple} />
 			</div>
 		</Router>
 	)
