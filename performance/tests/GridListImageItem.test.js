@@ -15,6 +15,9 @@ describe( 'GridListImageItem', () => {
 			width: 1920,
 			height: 1080
 		});
+
+		const client = await page.target().createCDPSession();
+		await client.send('Emulation.setCPUThrottlingRate', {rate: 6});
 	});
 
 	afterEach(async () => {
