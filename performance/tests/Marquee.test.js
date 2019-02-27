@@ -60,7 +60,7 @@ describe('Marquee', () => {
 				const count = counts[index];
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: false});
+				const browser = await puppeteer.launch({headless: true});
 				const page = await browser.newPage();
 				await page.setViewport({
 					width: 1920,
@@ -86,7 +86,7 @@ describe('Marquee', () => {
 				const count = counts[index];
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: false});
+				const browser = await puppeteer.launch({headless: true});
 				const page = await browser.newPage();
 				await page.setViewport({
 					width: 1920,
@@ -115,7 +115,7 @@ describe('Marquee', () => {
 				const count = counts[index];
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: false});
+				const browser = await puppeteer.launch({headless: true});
 				const page = await browser.newPage();
 				await page.setViewport({
 					width: 1920,
