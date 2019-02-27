@@ -22,6 +22,7 @@ describe('ViewManager', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('change index', async () => {
 		const filename = getFileName('ViewManager');
 		const view = '[class^="view"]';

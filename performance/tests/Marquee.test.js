@@ -22,6 +22,7 @@ describe('Marquee', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('should start marquee on hover', async () => {
 		const filename = getFileName('Marquee');
 		const MarqueeText = '[class^="Marquee"]';

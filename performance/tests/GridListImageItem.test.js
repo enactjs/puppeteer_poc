@@ -23,6 +23,7 @@ describe( 'GridListImageItem', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('mount', async () => {
 		const filename = getFileName('GridListImageItem');
 

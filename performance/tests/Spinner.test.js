@@ -22,6 +22,7 @@ describe( 'Spinner', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('mount', async () => {
 		const filename = getFileName('Spinner');
 

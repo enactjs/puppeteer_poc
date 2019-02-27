@@ -22,6 +22,7 @@ describe('Panels', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('change panel', async () => {
 		const filename = getFileName('Panels');
 		const panel = '[class^="Panel_body"]';

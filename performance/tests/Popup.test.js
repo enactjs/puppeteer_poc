@@ -22,6 +22,7 @@ describe('Popup', () => {
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	it('open and close', async () => {
 		const filename = getFileName('Popup');
 		const open = '#popup-open';
