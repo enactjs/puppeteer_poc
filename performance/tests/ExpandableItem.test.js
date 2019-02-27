@@ -4,9 +4,16 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('ExpandableItem', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -16,12 +23,6 @@ describe('ExpandableItem', () => {
 	it('open and close', async () => {
 		const filename = getFileName('ExpandableItem');
 		const openClose = '[class^="ExpandableItem_expandableItem"]';
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.goto('http://localhost:8080/expandableItem');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -47,12 +48,6 @@ describe('ExpandableItem', () => {
 
 	it('should mount ExpandableItem under threshold', async () => {
 		const filename = getFileName('ExpandableItem');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/expandableItem');

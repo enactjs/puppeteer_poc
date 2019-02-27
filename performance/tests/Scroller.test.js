@@ -5,24 +5,25 @@ const TestResults = require('../TestResults');
 
 
 describe( 'Scroller', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
-			const filename = getFileName('Scroller');
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-			await page.goto('http://localhost:8080/scroller');
+			const filename = getFileName('Scroller');			await page.goto('http://localhost:8080/scroller');
 			await page.tracing.start({path: filename, screenshots: false});
 
 			await page.focus('[aria-label="scroll down"]');
@@ -40,14 +41,7 @@ describe( 'Scroller', () => {
 	describe('mouse wheel', () => {
 
 		it('scrolls down', async () => {
-			const filename = getFileName('Scroller');
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-			await page.goto('http://localhost:8080/scroller');
+			const filename = getFileName('Scroller');			await page.goto('http://localhost:8080/scroller');
 			await page.tracing.start({path: filename, screenshots: false});
 
 			const scroller = '#Scroller';
@@ -70,12 +64,6 @@ describe( 'Scroller', () => {
 
 	it('mount', async () => {
 		const filename = getFileName('Scroller');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/scroller');

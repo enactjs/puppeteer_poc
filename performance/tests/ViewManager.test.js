@@ -4,9 +4,16 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('ViewManager', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -15,12 +22,6 @@ describe('ViewManager', () => {
 	it('change index', async () => {
 		const filename = getFileName('ViewManager');
 		const view = '[class^="view"]';
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.goto('http://localhost:8080/viewManager');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -41,12 +42,6 @@ describe('ViewManager', () => {
 
 	it('mount', async () => {
 		const filename = getFileName('ViewManager');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/viewManager');

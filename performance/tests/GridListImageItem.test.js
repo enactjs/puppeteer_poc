@@ -5,9 +5,16 @@ const TestResults = require('../TestResults');
 
 
 describe( 'GridListImageItem', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -15,11 +22,6 @@ describe( 'GridListImageItem', () => {
 	});
 	it('mount', async () => {
 		const filename = getFileName('GridListImageItem');
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/GridListImageItem');

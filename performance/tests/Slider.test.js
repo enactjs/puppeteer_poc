@@ -4,24 +4,25 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Slider', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	describe('drag', () => {
 		it('increment', async () => {
 			const filename = getFileName('Slider');
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
 			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#Slider');
@@ -52,13 +53,6 @@ describe('Slider', () => {
 	describe('keyboard', () => {
 		it('increment', async () => {
 			const filename = getFileName('Slider');
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
 			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#Slider');
@@ -82,12 +76,6 @@ describe('Slider', () => {
 
 	it('mount', async () => {
 		const filename = getFileName('Slider');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/slider');

@@ -4,9 +4,16 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Marquee', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -15,12 +22,6 @@ describe('Marquee', () => {
 	it('should start marquee on hover', async () => {
 		const filename = getFileName('Marquee');
 		const MarqueeText = '[class^="Marquee"]';
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.goto('http://localhost:8080/marquee');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -40,12 +41,6 @@ describe('Marquee', () => {
 
 	it('should mount Marquee under threshold', async () => {
 		const filename = getFileName('Marquee');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/marquee');

@@ -4,9 +4,16 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Item', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -14,12 +21,6 @@ describe('Item', () => {
 	});
 	it('mount', async () => {
 		const filename = getFileName('Item');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/item');

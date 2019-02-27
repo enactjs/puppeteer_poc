@@ -4,9 +4,16 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Popup', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
@@ -16,12 +23,6 @@ describe('Popup', () => {
 		const filename = getFileName('Popup');
 		const open = '#popup-open';
 		const close = '#popup-close';
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.goto('http://localhost:8080/popup');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -49,12 +50,6 @@ describe('Popup', () => {
 
 	it('should mount Popup under threshold', async () => {
 		const filename = getFileName('Popup');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: true});
 		await page.goto('http://localhost:8080/popup');

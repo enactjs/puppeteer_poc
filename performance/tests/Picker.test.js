@@ -4,25 +4,26 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Picker', () => {
-	let browser;
+	let browser, page;
+
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
+
+		page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
 	});
 
 	afterEach(async () => {
 		await browser.close();
 	});
+
 	describe('click', () => {
 		it('increment', async () => {
 			const filename = getFileName('Picker');
 			const incrementer = '[class^="Picker_incrementer"]';
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
 			await page.goto('http://localhost:8080/picker');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
@@ -49,13 +50,6 @@ describe('Picker', () => {
 	describe('keypress', () => {
 		it('increment', async () => {
 			const filename = getFileName('Picker');
-
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
 			await page.goto('http://localhost:8080/picker');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
@@ -82,12 +76,6 @@ describe('Picker', () => {
 
 	it('should mount picker under threshold', async () => {
 		const filename = getFileName('Picker');
-
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/picker');
