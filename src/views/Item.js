@@ -6,7 +6,7 @@ const ItemTest = kind({
 	name: 'ItemTest',
 
 	render: () => (
-		<Item id="Item">Item Test</Item>
+		<Item id="item">Item Test</Item>
 	)
 });
 

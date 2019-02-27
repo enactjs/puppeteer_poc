@@ -2,12 +2,12 @@ import kind from '@enact/core/kind';
 import React from 'react';
 import Button from '@enact/moonstone/Button';
 
-const MainPanel = kind({
-	name: 'MainPanel',
+const ButtonView = kind({
+	name: 'ButtonView',
 
 	render: () => (
-		<Button id="testButton">Puppeteer!</Button>
+		<Button id="button">Hello World!</Button>
 	)
 });
 
-export default MainPanel;
+export default ButtonView;

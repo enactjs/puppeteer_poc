@@ -7,7 +7,6 @@ const FPS = (filename) => {
 	const results = model.frameModel();
 
 	let counter = 0;
-	let fps = {};
 	const avgDuration = results._frames.reduce((accumulator, currentValue) => {
 		if (!currentValue.idle) {
 			counter += 1;

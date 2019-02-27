@@ -1,47 +1,38 @@
 import React from 'react';
-
 import kind from '@enact/core/kind';
-import Item from '@enact/moonstone/Item';
 import VirtualList from '@enact/moonstone/VirtualList';
-import ri from '@enact/ui/resolution';
 
-const itemStyle = {
-	borderBottom: ri.unit(3, 'rem') + ' solid #202328',
-	boxSizing: 'border-box'
-};
 const items = [];
 
-// eslint-disable-next-line enact/display-name, enact/prop-types
-const renderItem = (size) => ({index, ...rest}) => {
-	const style = {height: size + 'px', ...itemStyle};
+// eslint-disable-next-line enact/prop-types
+const renderItem = ({index, ...rest}) => {
 	return (
-		<Item index={index} style={style} {...rest}>
+		<div {...rest}>
 			{items[index].item}
-		</Item>
+		</div>
 	);
 };
 
 for (let i = 0; i < 100; i++) {
-	items.push({item :'Item ' + ('00' + i).slice(-3), selected: false});
+	items.push({item :'Item ' + ('00' + i).slice(-3)});
 }
 
-const itemSize = ri.scale(72);
+const itemSize = 60;
 
-const VirtualListTest = kind({
-	name: 'VirtualListTest',
+const VirtualListView = kind({
+	name: 'VirtualListView',
 
-	render: ({...props}) => (
-		<div {...props} style={{height: '700px'}}>
+	render: () => (
+		<div style={{height: '700px'}}>
 			<VirtualList
-				id="VirtualList"
+				id="virtualList"
 				dataSize={items.length}
 				focusableScrollbar
-				itemRenderer={renderItem(itemSize)}
+				itemRenderer={renderItem}
 				itemSize={itemSize}
-				spacing={ri.scale(0)}
 			/>
 		</div>
 	)
 });
 
-export default VirtualListTest;
+export default VirtualListView;

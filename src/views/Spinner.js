@@ -2,14 +2,12 @@ import kind from '@enact/core/kind';
 import React from 'react';
 import Spinner from '@enact/moonstone/Spinner';
 
-const MainPanel = kind({
-	name: 'MainPanel',
+const SpinnerView = kind({
+	name: 'SpinnerView',
 
-	render: (props) => (
-		<div {...props}>
-			<Spinner id="Spinner">Loading message...</Spinner>
-		</div>
+	render: () => (
+		<Spinner id="spinner">Loading message...</Spinner>
 	)
 });
 
-export default MainPanel;
+export default SpinnerView;
