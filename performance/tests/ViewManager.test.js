@@ -4,11 +4,18 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('ViewManager', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	it('change index', async () => {
 		const filename = getFileName('ViewManager');
 		const view = '[class^="view"]';
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -24,7 +31,6 @@ describe('ViewManager', () => {
 		await page.waitFor(1000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualFPS = FPS(filename);
 		TestResults.addResult({component: 'ViewManager', type: 'Frames Per Second', actualValue: actualFPS});
@@ -36,7 +42,6 @@ describe('ViewManager', () => {
 	it('mount', async () => {
 		const filename = getFileName('ViewManager');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -48,7 +53,6 @@ describe('ViewManager', () => {
 		await page.waitForSelector('#view1');
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'ViewManager');
 		TestResults.addResult({component: 'Panels', type: 'Mount', actualValue: actualMount});

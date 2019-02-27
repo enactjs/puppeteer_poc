@@ -4,11 +4,19 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('ExpandableItem', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
+
 	it('open and close', async () => {
 		const filename = getFileName('ExpandableItem');
 		const openClose = '[class^="ExpandableItem_expandableItem"]';
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -28,7 +36,6 @@ describe('ExpandableItem', () => {
 		await page.waitFor(200);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualFPS = FPS(filename);
 		TestResults.addResult({component: 'ExpandableItem', type: 'Frames Per Second', actualValue: actualFPS});
@@ -41,7 +48,6 @@ describe('ExpandableItem', () => {
 	it('should mount ExpandableItem under threshold', async () => {
 		const filename = getFileName('ExpandableItem');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -53,7 +59,6 @@ describe('ExpandableItem', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Toggleable');
 		TestResults.addResult({component: 'ExpandableItem', type: 'Mount', actualValue: actualMount});

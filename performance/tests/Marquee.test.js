@@ -4,11 +4,18 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Marquee', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	it('should start marquee on hover', async () => {
 		const filename = getFileName('Marquee');
 		const MarqueeText = '[class^="Marquee"]';
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -22,7 +29,6 @@ describe('Marquee', () => {
 		await page.waitFor(500);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualFPS = FPS(filename);
 		TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
@@ -35,7 +41,6 @@ describe('Marquee', () => {
 	it('should mount Marquee under threshold', async () => {
 		const filename = getFileName('Marquee');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -48,7 +53,6 @@ describe('Marquee', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Skinnable');
 		TestResults.addResult({component: 'Marquee', type: 'Mount', actualValue: actualMount});

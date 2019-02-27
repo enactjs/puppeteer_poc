@@ -4,11 +4,18 @@ const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('VirtualList', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -28,7 +35,6 @@ describe('VirtualList', () => {
 			await page.waitFor(2000);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actual = FPS(filename);
 			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
@@ -42,7 +48,6 @@ describe('VirtualList', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -64,7 +69,6 @@ describe('VirtualList', () => {
 			await page.waitFor(200);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actual = FPS(filename);
 			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
@@ -77,7 +81,6 @@ describe('VirtualList', () => {
 	it('mount', async () => {
 		const filename = getFileName('VirtualList');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -89,7 +92,6 @@ describe('VirtualList', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actual = Mount(filename, 'VirtualList');
 

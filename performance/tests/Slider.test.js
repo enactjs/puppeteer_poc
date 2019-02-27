@@ -4,11 +4,18 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Slider', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	describe('drag', () => {
 		it('increment', async () => {
 			const filename = getFileName('Slider');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -33,7 +40,6 @@ describe('Slider', () => {
 			}
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Slider', type: 'Frames Per Second', actualValue: actualFPS});
@@ -47,7 +53,6 @@ describe('Slider', () => {
 		it('increment', async () => {
 			const filename = getFileName('Slider');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -66,7 +71,6 @@ describe('Slider', () => {
 			}
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Slider', type: 'Frames Per Second', actualValue: actualFPS});
@@ -79,7 +83,6 @@ describe('Slider', () => {
 	it('mount', async () => {
 		const filename = getFileName('Slider');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -92,7 +95,6 @@ describe('Slider', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Changeable');
 		TestResults.addResult({component: 'Slider', type: 'Mount', actualValue: actualMount});

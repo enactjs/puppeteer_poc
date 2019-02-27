@@ -4,12 +4,19 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Picker', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	describe('click', () => {
 		it('increment', async () => {
 			const filename = getFileName('Picker');
 			const incrementer = '[class^="Picker_incrementer"]';
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -29,7 +36,6 @@ describe('Picker', () => {
 			await page.waitFor(200);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
@@ -44,7 +50,6 @@ describe('Picker', () => {
 		it('increment', async () => {
 			const filename = getFileName('Picker');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -66,7 +71,6 @@ describe('Picker', () => {
 			await page.waitFor(200);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
@@ -79,7 +83,6 @@ describe('Picker', () => {
 	it('should mount picker under threshold', async () => {
 		const filename = getFileName('Picker');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -91,7 +94,6 @@ describe('Picker', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Changeable');
 		TestResults.addResult({component: 'Picker', type: 'Mount', actualValue: actualMount});

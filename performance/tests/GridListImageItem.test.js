@@ -5,9 +5,16 @@ const TestResults = require('../TestResults');
 
 
 describe( 'GridListImageItem', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	it('mount', async () => {
 		const filename = getFileName('GridListImageItem');
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -20,7 +27,6 @@ describe( 'GridListImageItem', () => {
 		await page.waitFor(2000);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Spottable');
 		TestResults.addResult({component: 'GridListImageItem', type: 'Mount', actualValue: actualMount});

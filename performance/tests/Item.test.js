@@ -4,10 +4,17 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Item', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
 	it('mount', async () => {
 		const filename = getFileName('Item');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -19,7 +26,6 @@ describe('Item', () => {
 		await page.waitForSelector('#Item');
 		await page.waitFor(2000);
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Pure');
 

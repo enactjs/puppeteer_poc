@@ -4,11 +4,19 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Button', () => {
+	let browser;
+	beforeEach(async () => {
+		browser = await puppeteer.launch({headless: true});
+	});
+
+	afterEach(async () => {
+		await browser.close();
+	});
+
 	describe('click', () => {
 		it('animates', async () => {
 			const filename = getFileName('Button');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -34,7 +42,6 @@ describe('Button', () => {
 			await page.mouse.up();
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Button', type: 'Frames Per Second', actualValue: actualFPS});
@@ -49,7 +56,6 @@ describe('Button', () => {
 		it('animates', async () => {
 			const filename = getFileName('Button');
 
-			const browser = await puppeteer.launch({headless: true});
 			const page = await browser.newPage();
 			await page.setViewport({
 				width: 1920,
@@ -75,7 +81,6 @@ describe('Button', () => {
 			await page.keyboard.up('Enter');
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actualFPS = FPS(filename);
 			TestResults.addResult({component: 'Button', type: 'Frames Per Second', actualValue: actualFPS});
@@ -88,7 +93,6 @@ describe('Button', () => {
 	it('should mount Button under threshold', async () => {
 		const filename = getFileName('Button');
 
-		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
 		await page.setViewport({
 			width: 1920,
@@ -100,7 +104,6 @@ describe('Button', () => {
 		await page.waitForSelector('#testButton');
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Touchable');
 		TestResults.addResult({component: 'Button', type: 'Mount', actualValue: actualMount});
