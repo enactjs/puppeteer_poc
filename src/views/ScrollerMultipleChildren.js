@@ -17,7 +17,7 @@ const ScrollerMultipleChildren = ({location}) => {
 	const Scroller = types[type] || ScrollerJS;
 
 	return (
-		<Scroller>
+		<Scroller id="Scroller">
 			<MultipleComponents location={location} />
 		</Scroller>
 	);

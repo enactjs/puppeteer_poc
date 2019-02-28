@@ -63,7 +63,7 @@ describe( 'Scroller', () => {
 		});
 	});
 
-	it.only('mount', async () => {
+	it('mount', async () => {
 		const filename = getFileName('Scroller');
 
 		const browser = await puppeteer.launch({headless: false});
@@ -95,7 +95,7 @@ describe( 'Scroller', () => {
 		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 
-	it.only('mount with 100 children', async () => {
+	it('mount with 100 children', async () => {
 
 		const counts = [10, 100, 1000];
 		let results = [];
@@ -131,5 +131,49 @@ describe( 'Scroller', () => {
 			}
 		}
 		console.log(results);
+	});
+
+	it('scroll down with scroller native', async () => {
+
+		// const counts = [10, 100, 1000];
+		// let results = [];
+		// const types = [
+		// 	'ScrollerJS',
+		// 	'ScrollerNative',
+		// 	'UiScrollerJS',
+		// 	'UiScrollerNative'
+		// ];
+
+		const filename = getFileName('scrollernative');
+		// const count = counts[index];
+
+		const browser = await puppeteer.launch({headless: false});
+		const page = await browser.newPage();
+		// await page.setViewport({
+		// 	width: 1920,
+		// 	height: 1080
+		// });
+		const client = await page.target().createCDPSession();
+		await client.send('Emulation.setCPUThrottlingRate', { rate: 6 });
+
+		await page.tracing.start({path: filename, screenshots: false});
+		await page.goto(`http://localhost:8080/scrollerMultipleChildren?count=100&type=ScrollerNative`);
+		await page.waitForSelector('#Scroller');
+		const item = '[class^="Item_item"]'
+		await page.focus(item);
+
+		for (let i = 0; i < 300; i++) {
+			await page.keyboard.down('ArrowDown');
+			await page.waitFor(10);
+		}
+
+		await page.waitFor(2000);
+
+		await page.tracing.stop();
+		await browser.close();
+
+		const actual = FPS(filename);
+		// results.push({count: count, value: actual, type: type});
+		TestResults.addResult({component: 'Scroller', type: `FPS`, actualValue: actual});
 	});
 });
