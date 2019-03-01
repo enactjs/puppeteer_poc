@@ -14,6 +14,7 @@ import GridListImageItem from '../views/GridListImageItem';
 import Item from '../views/Item';
 import Slider from '../views/Slider';
 import ViewManager from '../views/ViewManager';
+import PanelTransition from '../views/PanelTransition';
 
 import css from './App.less';
 
@@ -43,6 +44,7 @@ const App = kind({
 				<Route path="/item" component={Item} />
 				<Route path="/slider" component={Slider} />
 				<Route path="/viewManager" component={ViewManager} />
+				<Route path="/panelTransition" component={PanelTransition} />
 			</div>
 		</Router>
 	)
