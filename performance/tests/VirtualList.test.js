@@ -51,19 +51,7 @@ describe('VirtualList', () => {
 	describe('mousewheel', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
-<<<<<<< HEAD
 			const VirtualList = '#VirtualList';
-=======
-
-			const browser = await puppeteer.launch({headless: true});
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
-			const VirtualList = '#virtualList';
->>>>>>> master
 
 			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});

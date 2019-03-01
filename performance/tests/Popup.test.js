@@ -4,17 +4,10 @@ const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Popup', () => {
-<<<<<<< HEAD
 	let browser, page;
 
 	beforeEach(async () => {
 		browser = await puppeteer.launch({headless: true});
-=======
-	it('open and close', async () => {
-		const filename = getFileName('Popup');
-		const open = '#button-open';
-		const close = '#button-close';
->>>>>>> master
 
 		page = await browser.newPage();
 		await page.setViewport({
