@@ -17,7 +17,7 @@ describe('Slider', () => {
 
 			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
-			await page.waitForSelector('#Slider');
+			await page.waitForSelector('#slider');
 			const {x: posX, y: posY} = await page.evaluate(() => {
 				const knobElement = document.querySelector('[class^="Slider_knob"]');
 				const {x, y} = knobElement.getBoundingClientRect();
@@ -56,8 +56,8 @@ describe('Slider', () => {
 
 			await page.goto('http://localhost:8080/slider');
 			await page.tracing.start({path: filename, screenshots: false});
-			await page.waitForSelector('#Slider');
-			await page.focus('#Slider');
+			await page.waitForSelector('#slider');
+			await page.focus('#slider');
 
 			await page.keyboard.press('Enter');
 
@@ -88,7 +88,7 @@ describe('Slider', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/slider');
-		await page.waitForSelector('#Slider');
+		await page.waitForSelector('#slider');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

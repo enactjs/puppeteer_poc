@@ -2,12 +2,12 @@ import kind from '@enact/core/kind';
 import React from 'react';
 import Slider from '@enact/moonstone/Slider';
 
-const MainPanel = kind({
-	name: 'MainPanel',
+const SliderView = kind({
+	name: 'SliderView',
 
 	render: () => (
-		<Slider id="Slider" min={0} max={100} defaultValue={0} />
+		<Slider id="slider" min={0} max={100} defaultValue={0} />
 	)
 });
 
-export default MainPanel;
+export default SliderView;

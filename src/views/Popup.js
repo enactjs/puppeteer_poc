@@ -1,8 +1,7 @@
-import {ButtonBase as Button} from '@enact/moonstone/Button';
 import Popup from '@enact/moonstone/Popup';
 import React from 'react';
 
-class MainPanel extends React.Component {
+class PopupView extends React.Component {
 	constructor (props) {
 		super(props);
 
@@ -16,17 +15,15 @@ class MainPanel extends React.Component {
 	}
 
 	render () {
-		const {open} = this.state;
-
 		return (
-			<div>
-				<Button id="popup-open" onClick={this.handleToggle}>open</Button>
-				<Popup id="PopupTest" open={open}>
-					<Button id="popup-close" onClick={this.handleToggle}>close</Button>
+			<>
+				<button id="button-open" onClick={this.handleToggle}>open</button>
+				<Popup id="popup" open={this.state.open}>
+					<button id="button-close" onClick={this.handleToggle}>close</button>
 				</Popup>
-			</div>
+			</>
 		);
 	}
 }
 
-export default MainPanel;
+export default PopupView;

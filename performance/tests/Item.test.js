@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const {FPS, Mount, Update} = require('../TraceModel');
+const {Mount} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
@@ -16,7 +16,7 @@ describe('Item', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/item');
-		await page.waitForSelector('#Item');
+		await page.waitForSelector('#item');
 		await page.waitFor(2000);
 		await page.tracing.stop();
 		await browser.close();

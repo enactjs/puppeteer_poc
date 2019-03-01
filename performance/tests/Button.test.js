@@ -19,7 +19,7 @@ describe('Button', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitFor(500);
 
-			await page.click('#testButton'); // to move mouse on the button.
+			await page.click('#button'); // to move mouse on the button.
 			await page.mouse.down();
 			await page.waitFor(200);
 			await page.mouse.up();
@@ -58,8 +58,8 @@ describe('Button', () => {
 
 			await page.goto('http://localhost:8080/button');
 			await page.tracing.start({path: filename, screenshots: false});
-			await page.waitForSelector('#testButton');
-			await page.focus('#testButton');
+			await page.waitForSelector('#button');
+			await page.focus('#button');
 			await page.waitFor(200);
 			await page.keyboard.down('Enter');
 			await page.waitFor(200);
@@ -97,7 +97,7 @@ describe('Button', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/button');
-		await page.waitForSelector('#testButton');
+		await page.waitForSelector('#button');
 
 		await page.tracing.stop();
 		await browser.close();

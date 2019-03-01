@@ -32,7 +32,6 @@ describe( 'Scroller', () => {
 	});
 
 	describe('mouse wheel', () => {
-
 		it('scrolls down', async () => {
 			const filename = getFileName('Scroller');
 
@@ -45,7 +44,7 @@ describe( 'Scroller', () => {
 			await page.goto('http://localhost:8080/scroller');
 			await page.tracing.start({path: filename, screenshots: false});
 
-			const scroller = '#Scroller';
+			const scroller = '#scroller';
 
 			await scrollAtPoint(page, scroller, 1000);
 			await page.waitFor(200);
