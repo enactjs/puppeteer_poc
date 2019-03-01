@@ -25,8 +25,8 @@ describe('Popup', () => {
 
 	it('open and close', async () => {
 		const filename = getFileName('Popup');
-		const open = '#popup-open';
-		const close = '#popup-close';
+		const open = '#button-open';
+		const close = '#button-close';
 
 		await page.goto('http://localhost:8080/popup');
 		await page.tracing.start({path: filename, screenshots: false});

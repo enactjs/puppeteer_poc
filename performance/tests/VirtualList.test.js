@@ -51,7 +51,7 @@ describe('VirtualList', () => {
 	describe('mousewheel', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
-			const VirtualList = '#VirtualList';
+			const VirtualList = '#virtualList';
 
 			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});
@@ -80,7 +80,7 @@ describe('VirtualList', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/virtualList');
-		await page.waitFor(2000);
+		await page.waitForSelector('#virtualList');
 
 		await page.tracing.stop();
 
