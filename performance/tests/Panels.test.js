@@ -51,7 +51,7 @@ describe('Panels', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/panels');
-		await page.waitForSelector('#testPanel1');
+		await page.waitForSelector('#panel-1');
 
 		await page.tracing.stop();
 

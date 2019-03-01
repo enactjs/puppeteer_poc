@@ -13,7 +13,6 @@ const TestResult = module.exports = {
 		TestResult.results.push(result);
 		// batch this in the future
 		if (API_URL) {
-			// eslint-disable-next-line no-console
 			fetch(API_URL, {
 				method: 'POST',
 				body: JSON.stringify(result),

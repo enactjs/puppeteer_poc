@@ -28,7 +28,7 @@ describe( 'Spinner', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/spinner');
-		await page.waitForSelector('#Spinner');
+		await page.waitForSelector('#spinner');
 		await page.waitFor(2000);
 
 		await page.tracing.stop();

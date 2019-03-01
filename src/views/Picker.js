@@ -9,20 +9,18 @@ const airports = [
 	'נמל התעופה בן גוריון טרמינל הבינלאומי'
 ];
 
-const MainPanel = kind({
-	name: 'MainPanel',
+const PickerView = kind({
+	name: 'PickerView',
 
-	render: (props) => (
-		<div {...props}>
-			<Picker
-				wrap
-				joined
-				width="large"
-			>
-				{airports}
-			</Picker>
-		</div>
+	render: () => (
+		<Picker
+			wrap
+			joined
+			width="large"
+		>
+			{airports}
+		</Picker>
 	)
 });
 
-export default MainPanel;
+export default PickerView;

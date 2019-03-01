@@ -1,52 +1,28 @@
-import kind from '@enact/core/kind';
 import {ActivityPanels, Panel} from '@enact/moonstone/Panels';
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const MainPanel = kind({
-	name: 'MainPanel',
-
-	render: (props) => (
-		<React.Fragment>
-			<Panel {...props} />
-		</React.Fragment>
-	)
-});
-
-class Panels extends React.Component {
-	static propTypes = {
-		index: PropTypes.number
-	}
-
-	static defaultProps = {
-		index: 0
-	}
-
+class PanelsView extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			index: this.props.index
+			index: 0
 		};
 	}
 
 	handleSelectBreadcrumb = ({index}) => this.setState({index})
 
-	handleClick = () => this.setState(prevState => {
-		let newIndex;
-		if (prevState.index) {
-			newIndex = 0;
-		} else {
-			newIndex = 1;
-		}
-		return {index: newIndex};
+	handleClick = () => this.setState(state => {
+		return {index: state.index ? 0 : 1};
 	})
 
 	render () {
-		return <ActivityPanels index={this.state.index} >
-			<MainPanel id="testPanel1" onClick={this.handleClick}>1</MainPanel>
-			<MainPanel id="testPanel2" onClick={this.handleClick}>2</MainPanel>
-		</ActivityPanels>
+		return (
+			<ActivityPanels index={this.state.index}>
+				<Panel id="panel-1" onClick={this.handleClick}>1</Panel>
+				<Panel id="panel-2" onClick={this.handleClick}>2</Panel>
+			</ActivityPanels>
+		);
 	}
 }
 
-export default Panels;
+export default PanelsView;
