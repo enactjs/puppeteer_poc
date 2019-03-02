@@ -54,10 +54,10 @@ describe('Marquee', () => {
 	});
 
 	describe('Multiple Marquees', () => {
-		it('mounts', async () => {
-			const counts = [10, 100, 1000];
-			for (let index = 0; index < counts.length; index++) {
-				const count = counts[index];
+		const counts = [10, 40, 70, 100];
+		for (let index = 0; index < counts.length; index++) {
+			const count = counts[index];
+			it(`mounts ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
 				const browser = await puppeteer.launch({headless: true});
@@ -77,13 +77,12 @@ describe('Marquee', () => {
 
 				const actualMount = Mount(filename, 'MarqueeMultiple');
 				TestResults.addResult({component: 'Marquee', type: 'Mount', actualValue: actualMount});
-			}
-		});
+			});
+		}
 
-		it('updates marqueeOn hover', async () => {
-			const counts = [10, 100, 1000];
-			for (let index = 0; index < counts.length; index++) {
-				const count = counts[index];
+		for (let index = 0; index < counts.length; index++) {
+			const count = counts[index];
+			it(`updates marqueeOn hover ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
 				const browser = await puppeteer.launch({headless: true});
@@ -106,13 +105,12 @@ describe('Marquee', () => {
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
-			}
-		});
+			});
+		}
 
-		it('updates marqueeOn render', async () => {
-			const counts = [10, 100, 1000];
-			for (let index = 0; index < counts.length; index++) {
-				const count = counts[index];
+		for (let index = 0; index < counts.length; index++) {
+			const count = counts[index];
+			it(`updates marqueeOn render ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
 				const browser = await puppeteer.launch({headless: true});
@@ -132,8 +130,8 @@ describe('Marquee', () => {
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
-			}
-		});
+			});
+		}
 	});
 });
 
