@@ -15,6 +15,7 @@ import Item from '../views/Item';
 import Slider from '../views/Slider';
 import MarqueeMultiple from '../views/MarqueeMultiple';
 import ViewManager from '../views/ViewManager';
+import PanelTransition from '../views/PanelTransition';
 
 import css from './App.less';
 
@@ -45,6 +46,7 @@ const App = kind({
 				<Route path="/slider" component={Slider} />
 				<Route path="/marqueeMultiple" component={MarqueeMultiple} />
 				<Route path="/viewManager" component={ViewManager} />
+				<Route path="/panelTransition" component={PanelTransition} />
 			</div>
 		</Router>
 	)
