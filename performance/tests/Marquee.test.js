@@ -63,20 +63,12 @@ describe('Marquee', () => {
 			it(`mounts ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: true});
-				const page = await browser.newPage();
-				await page.setViewport({
-					width: 1920,
-					height: 1080
-				});
-
 				await page.tracing.start({path: filename, screenshots: false});
 				await page.goto(`http://localhost:8080/marqueeMultiple?count=${count}`);
 				await page.waitForSelector('#Container');
 				await page.waitFor(500);
 
 				await page.tracing.stop();
-				await browser.close();
 
 				const actualMount = Mount(filename, 'MarqueeMultiple');
 				TestResults.addResult({component: 'Marquee', type: 'Mount', actualValue: actualMount});
@@ -88,13 +80,6 @@ describe('Marquee', () => {
 			it(`updates marqueeOn hover ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: true});
-				const page = await browser.newPage();
-				await page.setViewport({
-					width: 1920,
-					height: 1080
-				});
-
 				await page.tracing.start({path: filename, screenshots: false});
 				await page.goto(`http://localhost:8080/marqueeMultiple?count=${count}`);
 				await page.waitForSelector('#Container');
@@ -104,7 +89,6 @@ describe('Marquee', () => {
 				await page.waitFor(500);
 
 				await page.tracing.stop();
-				await browser.close();
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
@@ -116,20 +100,12 @@ describe('Marquee', () => {
 			it(`updates marqueeOn render ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
-				const browser = await puppeteer.launch({headless: true});
-				const page = await browser.newPage();
-				await page.setViewport({
-					width: 1920,
-					height: 1080
-				});
-
 				await page.tracing.start({path: filename, screenshots: false});
 				await page.goto(`http://localhost:8080/marqueeMultiple?count=${count}&marqueeOn=render`);
 				await page.waitForSelector('#Container');
 				await page.waitFor(500);
 
 				await page.tracing.stop();
-				await browser.close();
 
 				const actualFPS = FPS(filename);
 				TestResults.addResult({component: 'Marquee', type: 'Frames Per Second', actualValue: actualFPS});
