@@ -3,7 +3,7 @@ const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
 
-describe('VirtualList', () => {
+xdescribe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
@@ -94,5 +94,101 @@ describe('VirtualList', () => {
 		const actual = Mount(filename, 'VirtualList');
 
 		TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
+	});
+});
+
+
+describe('VirtualGridList', () => {
+	it('scroll down with arrow down', async () => {
+		const filename = getFileName('VirtualGridListKeydownHold_arrowdown');
+		const browser = await puppeteer.launch({headless: false});
+		const page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
+
+		const client = await page.target().createCDPSession();
+		await client.send('Emulation.setCPUThrottlingRate', {rate: 6});
+
+		await page.tracing.start({path: filename, screenshots: true});
+		await page.goto('http://localhost:8080/virtualGridList');
+		await page.keyboard.press('ArrowDown', {delay: 5000});
+		await page.waitFor(7000);
+
+		await page.tracing.stop();
+		await browser.close();
+	});
+
+	it('scroll down with arrow down btn focus', async () => {
+		const filename = getFileName('VirtualGridListKeydownHold_enter');
+		const browser = await puppeteer.launch({headless: false});
+		const page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
+
+		const client = await page.target().createCDPSession();
+		await client.send('Emulation.setCPUThrottlingRate', {rate: 6});
+
+		await page.tracing.start({path: filename, screenshots: true});
+		await page.goto('http://localhost:8080/virtualGridList');
+		await page.focus('[aria-label="scroll down"]');
+		await page.keyboard.down('Enter', {delay: 5000});
+		await page.waitFor(6000);
+
+		await page.tracing.stop();
+		await browser.close();
+	});
+
+	it('scroll down with scroll down btn press', async () => {
+		const filename = getFileName('VirtualGridListarrayDownBtnPress');
+		const browser = await puppeteer.launch({headless: false});
+		const page = await browser.newPage();
+		await page.setViewport({
+			width: 1920,
+			height: 1080
+		});
+
+		const client = await page.target().createCDPSession();
+		await client.send('Emulation.setCPUThrottlingRate', {rate: 6});
+
+		await page.tracing.start({path: filename, screenshots: true});
+		await page.goto('http://localhost:8080/virtualGridList');
+		await page.waitForSelector('[aria-label="scroll down"]');
+		await page.focus('[aria-label="scroll down"]');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.keyboard.down('Enter');
+		await page.waitFor(3000);
+
+		await page.tracing.stop();
+		await browser.close();
 	});
 });
