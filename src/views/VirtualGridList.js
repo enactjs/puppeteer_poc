@@ -1,15 +1,17 @@
 import React from 'react';
 import kind from '@enact/core/kind';
 import {VirtualGridListNative as VirtualGridList} from '@enact/moonstone/VirtualList';
+import Spottable from '@enact/spotlight/Spottable';
 
 const items = [];
+const SpottableDiv = Spottable('div');
 
 // eslint-disable-next-line enact/prop-types
 const renderItem = ({index, ...rest}) => {
 	return (
-		<div {...rest}>
+		<SpottableDiv {...rest}>
 			{items[index].item}
-		</div>
+		</SpottableDiv>
 	);
 };
 
