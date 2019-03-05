@@ -1,4 +1,3 @@
-
 const puppeteer = require('puppeteer');
 const {Mount} = require('../TraceModel');
 const {getFileName} = require('../utils');
