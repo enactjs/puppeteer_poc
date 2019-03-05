@@ -5,6 +5,7 @@ import Picker from '../views/Picker';
 import ScrollerPanel from '../views/ScrollerPanel';
 import Panels from '../views/Panels';
 import ExpandableItem from '../views/ExpandableItem';
+import ExpandableItemItems from '../views/ExpandableItemItems';
 import Popup from '../views/Popup';
 import Marquee from '../views/Marquee';
 import Spinner from '../views/Spinner';
@@ -35,6 +36,7 @@ const App = kind({
 				<Route path="/picker" component={Picker} />
 				<Route path="/scroller" component={ScrollerPanel} />
 				<Route path="/expandableItem" component={ExpandableItem} />
+				<Route path="/expandableItemItems" component={ExpandableItemItems} />
 				<Route path="/popup" component={Popup} />
 				<Route path="/marquee" component={Marquee} />
 				<Route path="/spinner" component={Spinner} />
