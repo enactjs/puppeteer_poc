@@ -55,6 +55,7 @@ describe('ExpandableItem', () => {
 		await page.tracing.stop();
 		await browser.close();
 
+		// Transition causes a cascading update that mounts the Expandable's children
 		const actualMount = Mount(filename, 'Toggleable') + Update(filename, 'Transition');
 		TestResults.addResult({component: 'ExpandableItem', type: 'Mount', actualValue: actualMount});
 	});
@@ -82,6 +83,7 @@ describe('ExpandableItem', () => {
 				await page.tracing.stop();
 				await browser.close();
 
+				// Transition causes a cascading update that mounts the Expandable's children
 				const actualMount = Mount(filename, 'ExpandableItemItems') + Update(filename, 'Transition');
 				TestResults.addResult({component: 'ExpandableItem', type: 'Mount', actualValue: actualMount});
 			});
