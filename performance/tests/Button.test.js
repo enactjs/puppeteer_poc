@@ -1,28 +1,8 @@
-const puppeteer = require('puppeteer');
 const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
 describe('Button', () => {
-	let browser, page;
-
-	beforeEach(async () => {
-		browser = await puppeteer.launch({headless: true});
-
-		page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
-
-		const client = await page.target().createCDPSession();
-		await client.send('Emulation.setCPUThrottlingRate', {rate: 6});
-	});
-
-	afterEach(async () => {
-		await browser.close();
-	});
-
 	describe('click', () => {
 		it('animates', async () => {
 			const filename = getFileName('Button');
@@ -51,7 +31,6 @@ describe('Button', () => {
 
 			const actualUpdateTime = Update(filename, 'Touchable');
 			TestResults.addResult({component: 'Button', type: 'Update', actualValue: actualUpdateTime});
-
 		});
 	});
 
