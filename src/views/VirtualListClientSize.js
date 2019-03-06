@@ -2,6 +2,7 @@ import React from 'react';
 import kind from '@enact/core/kind';
 import VirtualListJS, {VirtualListNative} from '@enact/moonstone/VirtualList';
 import qs from 'qs';
+import DelayedRender from '../components/DelayRender';
 
 const items = [];
 
@@ -28,16 +29,20 @@ const VirtualListClientSizeView = kind({
 		const clientSize = search.clientSize ? {clientWidth: 1280, clientHeight: 720} : undefined;
 		const VirtualList = search.type === 'JS' ? VirtualListJS : VirtualListNative;
 
-		return (<div style={{width: '1280px', height: '720px'}}>
-			<VirtualList
-				id="virtualList"
-				clientSize={clientSize}
-				dataSize={items.length}
-				focusableScrollbar
-				itemRenderer={renderItem}
-				itemSize={itemSize}
-			/>
-		</div>);
+		return (
+			<div style={{width: '1280px', height: '720px'}}>
+				<DelayedRender>
+					<VirtualList
+						id="virtualList"
+						clientSize={clientSize}
+						dataSize={items.length}
+						focusableScrollbar
+						itemRenderer={renderItem}
+						itemSize={itemSize}
+					/>
+				</DelayedRender>
+			</div>
+		);
 	}
 });
 
