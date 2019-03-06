@@ -2,7 +2,7 @@ import React from 'react';
 import kind from '@enact/core/kind';
 import VirtualListJS, {VirtualListNative} from '@enact/moonstone/VirtualList';
 import qs from 'qs';
-import DelayedRender from '../components/DelayRender';
+import DelayedRender from '../components/DelayedRender';
 
 const items = [];
 
