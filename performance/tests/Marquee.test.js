@@ -77,7 +77,7 @@ describe('Marquee', () => {
 
 		for (let index = 0; index < counts.length; index++) {
 			const count = counts[index];
-			it.only(`updates marqueeOn render ${count} Marquee components`, async () => {
+			it(`updates marqueeOn render ${count} Marquee components`, async () => {
 				const filename = getFileName('Marquee');
 
 				await page.tracing.start({path: filename, screenshots: false});
