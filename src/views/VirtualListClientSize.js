@@ -27,7 +27,7 @@ const VirtualListClientSizeView = kind({
 	render: ({location}) => {
 		const search = qs.parse(location.search, {ignoreQueryPrefix: true});
 		const clientSize = search.clientSize ? {clientWidth: 1280, clientHeight: 720} : undefined;
-		const VirtualList = search.type === 'JS' ? VirtualListJS : VirtualListNative;
+		const VirtualList = search.native ? VirtualListNative : VirtualListJS;
 
 		return (
 			<div style={{width: '1280px', height: '720px'}}>
