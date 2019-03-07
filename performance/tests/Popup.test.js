@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
@@ -8,13 +7,6 @@ describe('Popup', () => {
 		const filename = getFileName('Popup');
 		const open = '#button-open';
 		const close = '#button-close';
-
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
 
 		await page.goto('http://localhost:8080/popup');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -31,7 +23,6 @@ describe('Popup', () => {
 		await page.waitFor(500);
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualFPS = FPS(filename);
 		TestResults.addResult({component: 'Popup', type: 'Frames Per Second', actualValue: actualFPS});
@@ -44,19 +35,11 @@ describe('Popup', () => {
 	it('should mount Popup under threshold', async () => {
 		const filename = getFileName('Popup');
 
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
-
 		await page.tracing.start({path: filename, screenshots: true});
 		await page.goto('http://localhost:8080/popup');
 		await page.waitForSelector('#popup');
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actualMount = Mount(filename, 'Popup');
 		TestResults.addResult({component: 'Popup', type: 'Mount', actualValue: actualMount});

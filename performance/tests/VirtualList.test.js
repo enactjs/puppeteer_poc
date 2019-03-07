@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const {FPS, Mount, Update} = require('../TraceModel');
 const {getFileName, scrollAtPoint} = require('../utils');
 const TestResults = require('../TestResults');
@@ -7,13 +6,6 @@ describe('VirtualList', () => {
 	describe('ScrollButton', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
-
-			const browser = await puppeteer.launch({headless: true});
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
 			await page.goto('http://localhost:8080/virtualList');
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#virtualList');
@@ -28,7 +20,6 @@ describe('VirtualList', () => {
 			await page.waitFor(2000);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actual = FPS(filename);
 			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
@@ -41,14 +32,6 @@ describe('VirtualList', () => {
 	describe('mousewheel', () => {
 		it('scrolls down', async () => {
 			const filename = getFileName('VirtualList');
-
-			const browser = await puppeteer.launch({headless: true});
-			const page = await browser.newPage();
-			await page.setViewport({
-				width: 1920,
-				height: 1080
-			});
-
 			const VirtualList = '#virtualList';
 
 			await page.goto('http://localhost:8080/virtualList');
@@ -64,7 +47,6 @@ describe('VirtualList', () => {
 			await page.waitFor(200);
 
 			await page.tracing.stop();
-			await browser.close();
 
 			const actual = FPS(filename);
 			TestResults.addResult({component: 'VirtualList', type: 'Frames Per Second', actualValue: actual});
@@ -77,19 +59,11 @@ describe('VirtualList', () => {
 	it('mount', async () => {
 		const filename = getFileName('VirtualList');
 
-		const browser = await puppeteer.launch({headless: true});
-		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1920,
-			height: 1080
-		});
-
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/virtualList');
-		await page.waitFor(2000);
+		await page.waitForSelector('#virtualList');
 
 		await page.tracing.stop();
-		await browser.close();
 
 		const actual = Mount(filename, 'VirtualList');
 

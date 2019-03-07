@@ -22,9 +22,6 @@
 	"enact": {
 		"theme": "moonstone"
 	},
-	"eslintConfig": {
-		"extends": "enact/strict"
-	},
 	"eslintIgnore": [
 		"node_modules/*",
 		"build/*",
@@ -37,7 +34,6 @@
 		"@enact/spotlight": "^2.0.0",
 		"@enact/ui": "^2.0.0",
 		"dotenv": "^6.2.0",
-		"jest-puppeteer": "^3.9.0",
 		"node-fetch": "^2.3.0",
 		"prop-types": "^15.6.2",
 		"qs": "^6.6.0",
