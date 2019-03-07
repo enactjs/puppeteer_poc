@@ -1,5 +1,6 @@
 import React from 'react';
 import kind from '@enact/core/kind';
+import UiVirtualListJS, {VirtualListNative as UiVirtualListNative} from '@enact/ui/VirtualList';
 import VirtualListJS, {VirtualListNative} from '@enact/moonstone/VirtualList';
 import qs from 'qs';
 import DelayedRender from '../components/DelayedRender';
@@ -21,13 +22,20 @@ for (let i = 0; i < 100; i++) {
 
 const itemSize = 60;
 
+const types = {
+	VirtualListJS,
+	VirtualListNative,
+	UiVirtualListJS,
+	UiVirtualListNative
+};
+
 const VirtualListClientSizeView = kind({
 	name: 'VirtualListClientSizeView',
 
 	render: ({location}) => {
 		const search = qs.parse(location.search, {ignoreQueryPrefix: true});
 		const clientSize = search.clientSize ? {clientWidth: 1280, clientHeight: 720} : undefined;
-		const VirtualList = search.native ? VirtualListNative : VirtualListJS;
+		const VirtualList = types[search.type] || VirtualListJS;
 
 		return (
 			<div style={{width: '1280px', height: '720px'}}>
@@ -36,7 +44,6 @@ const VirtualListClientSizeView = kind({
 						id="virtualList"
 						clientSize={clientSize}
 						dataSize={items.length}
-						focusableScrollbar
 						itemRenderer={renderItem}
 						itemSize={itemSize}
 					/>
