@@ -1,21 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class DelayedRender extends React.Component {
-	static propTypes = {
-		timeout: PropTypes.number
-	}
-
-	static defaultProps = {
-		timeout: 100
+	constructor (props) {
+		super(props);
+		const observer = new window.PerformanceObserver((list) => {
+			for (const entry of list.getEntries()) {
+				if (entry.name === 'first-paint') {
+					this.setState({show:true});
+				}
+			}
+		});
+		observer.observe({entryTypes: ['paint']});
 	}
 
 	state = {
 		show: false
-	}
-
-	componentDidMount () {
-		setTimeout(() => this.setState({show: true}), this.props.timeout);
 	}
 
 	render () {

@@ -1,6 +1,4 @@
-const {Mount} = require('../TraceModel');
-const {getFileName} = require('../utils');
-const TestResults = require('../TestResults');
+const {getAveragePaintTimeFor, getFileName} = require('../utils');
 
 describe('VirtualList clientSize prop', () => {
 	describe('UiVirtualList js type', () => {
@@ -9,14 +7,9 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=UiVirtualListJS');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
-
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`UiVirtualListJS without clientSize: ${paintTime} fps`);
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'ui:VirtualList');
-
-			TestResults.addResult({component: 'UiVirtualListJS', type: 'Mount', actualValue: actual});
 		});
 
 		it('mount time with clientSize', async () => {
@@ -24,14 +17,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=UiVirtualListJS');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`UiVirtualListJS with clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'ui:VirtualList');
-
-			TestResults.addResult({component: 'UiVirtualListJS', type: 'Mount', actualValue: actual});
 		});
 	});
 
@@ -41,14 +30,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=UiVirtualListNative');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`UiVirtualListNative without clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'ui:VirtualListNative');
-
-			TestResults.addResult({component: 'UiVirtualListNative', type: 'Mount', actualValue: actual});
 		});
 
 		it('mount time with clientSize', async () => {
@@ -56,14 +41,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=UiVirtualListNative');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`UiVirtualListNative with clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'ui:VirtualListNative');
-
-			TestResults.addResult({component: 'UiVirtualListNative', type: 'Mount', actualValue: actual});
 		});
 	});
 
@@ -73,14 +54,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=VirtualListJS');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`VirtualListJS without clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'VirtualList');
-
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
 		});
 
 		it('mount time with clientSize', async () => {
@@ -88,14 +65,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=VirtualListJS');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`VirtualListJS with clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'VirtualList');
-
-			TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
 		});
 	});
 
@@ -105,14 +78,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=VirtualListNative');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`VirtualListNative without clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'VirtualListNative');
-
-			TestResults.addResult({component: 'VirtualListNative', type: 'Mount', actualValue: actual});
 		});
 
 		it('mount time with clientSize', async () => {
@@ -120,14 +89,10 @@ describe('VirtualList clientSize prop', () => {
 
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=VirtualListNative');
-			await page.waitFor('#virtualList');
-			await page.waitFor(50);
+			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
+			console.log(`VirtualListNative with clientSize: ${paintTime} fps`);
 
 			await page.tracing.stop();
-
-			const actual = Mount(filename, 'VirtualListNative');
-
-			TestResults.addResult({component: 'VirtualListNative', type: 'Mount', actualValue: actual});
 		});
 	});
 });
