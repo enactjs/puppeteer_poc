@@ -8,7 +8,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=UiVirtualListJS');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`UiVirtualListJS without clientSize: ${paintTime} fps`);
+			console.log(`UiVirtualListJS without clientSize: ${paintTime} ms`);
 			await page.tracing.stop();
 		});
 
@@ -18,7 +18,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=UiVirtualListJS');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`UiVirtualListJS with clientSize: ${paintTime} fps`);
+			console.log(`UiVirtualListJS with clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
@@ -31,7 +31,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=UiVirtualListNative');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`UiVirtualListNative without clientSize: ${paintTime} fps`);
+			console.log(`UiVirtualListNative without clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
@@ -42,7 +42,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=UiVirtualListNative');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`UiVirtualListNative with clientSize: ${paintTime} fps`);
+			console.log(`UiVirtualListNative with clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
@@ -55,7 +55,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=VirtualListJS');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`VirtualListJS without clientSize: ${paintTime} fps`);
+			console.log(`VirtualListJS without clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
