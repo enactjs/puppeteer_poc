@@ -66,7 +66,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=VirtualListJS');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`VirtualListJS with clientSize: ${paintTime} fps`);
+			console.log(`VirtualListJS with clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
@@ -79,7 +79,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?type=VirtualListNative');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`VirtualListNative without clientSize: ${paintTime} fps`);
+			console.log(`VirtualListNative without clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
@@ -90,7 +90,7 @@ describe('VirtualList clientSize prop', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.goto('http://localhost:8080/virtualListClientSize?clientSize=true&type=VirtualListNative');
 			const paintTime = await getAveragePaintTimeFor('#virtualList', 10);
-			console.log(`VirtualListNative with clientSize: ${paintTime} fps`);
+			console.log(`VirtualListNative with clientSize: ${paintTime} ms`);
 
 			await page.tracing.stop();
 		});
