@@ -59,8 +59,9 @@ describe( 'Scroller', () => {
 		TestResults.addResult({component: 'Scroller', type: 'Mount', actualValue: actual});
 	});
 
-	it('mount with various children', async () => {
-		const counts = [10, 100, 1000];
+	describe('mount with various children', () => {
+
+		const counts = [10, 40, 70, 100];
 		let results = [];
 		const types = [
 			'ScrollerJS',
@@ -68,23 +69,27 @@ describe( 'Scroller', () => {
 			'UiScrollerJS',
 			'UiScrollerNative'
 		];
+
 		for (const type of types) {
 			for (let index = 0; index < counts.length; index++) {
-				const filename = getFileName(type);
 				const count = counts[index];
+				it(`mount ${type} with ${count} children`, async () => {
+					const filename = getFileName(type);
 
-				await page.tracing.start({path: filename, screenshots: false});
-				await page.goto(`http://localhost:8080/scrollerMultipleChildren?count=${count}&type=${type}`);
-				await page.waitFor(2000);
+					await page.tracing.start({path: filename, screenshots: false});
+					await page.goto(`http://localhost:8080/scrollerMultipleChildren?count=${count}&type=${type}`);
+					await page.waitFor(2000);
 
-				await page.tracing.stop();
+					await page.tracing.stop();
 
-				const actual = Mount(filename, 'ScrollerMultipleChildren');
-				results.push({count: count, value: actual, type: type});
-				TestResults.addResult({component: 'Scroller', type: `Mount ${count} ${type}`, actualValue: actual});
+					const actual = Mount(filename, 'ScrollerMultipleChildren');
+					results.push({count: count, value: actual, type: type});
+					TestResults.addResult({component: 'Scroller', type: `Mount ${count} ${type}`, actualValue: actual});
+				});
 			}
 		}
 	});
+
 
 	it('scroll down with 5-way with Scroller Native', async () => {
 		const filename = getFileName('ScrollerNative');
