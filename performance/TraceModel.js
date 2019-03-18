@@ -5,18 +5,53 @@ const FPS = (filename) => {
 	const events = fs.readFileSync(filename, 'utf8');
 	const model = new DevtoolsTimelineModel(events);
 	const results = model.frameModel();
+	// const timeline = model.timelineModel();
+	const bottomUp = model.bottomUp();
+	// const topDown = model.topDown();
+	// for (let index = 0; index < bottomUp.length; index++) {
+		// console.log(bottomUp['_events'], results);
+	// }
+	// topDown['_events'].forEach((ev)=> {
 
+	// 	console.log(ev.thread);
+	// })
+	// console.log(Object.keys(bottomUp));
+	// debugger;
+	for (let index = 0; index < results._frames.length; index++) {
+		console.log(1000 / results._frames[index].duration);
+	}
+	
+
+	const range = results._frames.reduce((accumulator, currentValue) => {
+		if (!currentValue.idle) {
+			const fps = 1000 / currentValue.duration;
+			const spot = Math.floor(fps / 10) * 10;
+			const times = accumulator[spot] ? accumulator[spot] + 1 : 1;
+			accumulator[spot] = times;
+			// console.log(accumulator);
+			return accumulator;
+		} else {
+			return accumulator;
+		}
+	}, {});
+
+	// console.log(range);
+	const frames = [];
 	let counter = 0;
-	const avgDuration = results._frames.reduce((accumulator, currentValue) => {
+	const avgFPS = results._frames.reduce((accumulator, currentValue) => {
 		if (!currentValue.idle) {
 			counter += 1;
+			frames.push(1000 / currentValue.duration);
 			return accumulator + 1000 / currentValue.duration;
 		} else {
 			return accumulator;
 		}
 	}, 0) / counter;
 
-	return avgDuration;
+	// console.log(frames);
+
+	return avgFPS;
+
 };
 
 const Mount = (filename, component) => {
