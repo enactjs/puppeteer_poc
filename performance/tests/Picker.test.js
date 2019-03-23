@@ -69,5 +69,31 @@ describe('Picker', () => {
 		const actualMount = Mount(filename, 'Changeable');
 		TestResults.addResult({component: 'Picker', type: 'Mount', actualValue: actualMount});
 	});
+
+	describe('multiple pickers', () => {
+		describe('marquee performance', () => {
+			it('measure FPS for joined picker', async () => {
+				const filename = getFileName('PickerMarquee');
+				await page.goto('http://localhost:8080/pickerMultiple?count=300&joined=true');
+				await page.tracing.start({path: filename, screenshots: false});
+				await page.waitFor(5000);
+				await page.tracing.stop();
+
+				const actualFPS = FPS(filename);
+				TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+			});
+
+			it('measure FPS for non-joined picker', async () => {
+				const filename = getFileName('PickerMarquee');
+				await page.goto('http://localhost:8080/pickerMultiple?count=300&joined=false');
+				await page.tracing.start({path: filename, screenshots: false});
+				await page.waitFor(5000);
+				await page.tracing.stop();
+
+				const actualFPS = FPS(filename);
+				TestResults.addResult({component: 'Picker', type: 'Frames Per Second', actualValue: actualFPS});
+			});
+		});
+	});
 });
 
