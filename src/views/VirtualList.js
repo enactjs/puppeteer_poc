@@ -1,15 +1,16 @@
 import React from 'react';
 import kind from '@enact/core/kind';
-import VirtualList from '@enact/moonstone/VirtualList';
+import {VirtualListNative as VirtualList} from '@enact/moonstone/VirtualList';
+import Item from '@enact/moonstone/Item';
 
 const items = [];
 
 // eslint-disable-next-line enact/prop-types
 const renderItem = ({index, ...rest}) => {
 	return (
-		<div {...rest}>
+		<Item {...rest}>
 			{items[index].item}
-		</div>
+		</Item>
 	);
 };
 
@@ -26,6 +27,7 @@ const VirtualListView = kind({
 		<div style={{height: '700px'}}>
 			<VirtualList
 				id="virtualList"
+				animate
 				dataSize={items.length}
 				focusableScrollbar
 				itemRenderer={renderItem}

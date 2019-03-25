@@ -69,4 +69,26 @@ describe('VirtualList', () => {
 
 		TestResults.addResult({component: 'VirtualList', type: 'Mount', actualValue: actual});
 	});
+
+	it.only('scroll down with 5-way with VirtualListNative', async () => {
+		const filename = getFileName('VLNative');
+
+		await page.tracing.start({path: filename, screenshots: false});
+		await page.goto('http://localhost:8080/VirtualList');
+		await page.waitForSelector('#virtualList');
+		const item = '[class^="Item_item"]';
+		await page.focus(item);
+
+		for (let i = 0; i < 300; i++) {
+			await page.keyboard.down('ArrowDown');
+			await page.waitFor(10);
+		}
+
+		await page.waitFor(2000);
+
+		await page.tracing.stop();
+
+		const actual = FPS(filename);
+		TestResults.addResult({component: 'Scroller', type: 'FPS', actualValue: actual});
+	});
 });
