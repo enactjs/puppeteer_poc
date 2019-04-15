@@ -2,7 +2,7 @@ const {FPS, Mount} = require('../TraceModel');
 const {getFileName} = require('../utils');
 const TestResults = require('../TestResults');
 
-describe( 'Spinner', () => {
+describe('Spinner', () => {
 	it('mount', async () => {
 		const filename = getFileName('Spinner');
 
