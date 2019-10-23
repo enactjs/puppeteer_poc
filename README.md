@@ -11,6 +11,22 @@ npm run serve
 npm run test
 ```
 
+## Viewing Individual Samples Used For Tests
+
+Once the server has been started, you can view each component's sample that is used within the test suite by appending the name of the sample to the served url.
+
+```
+http://localhost:8080/<sample>
+```
+
+## Filtering Tests
+
+### Filtering by Component
+
+```bash
+npm test -- <component>
+```
+
 ## Adding Tests
 
 This project works a bit differently than a regular test suite for now. We have Jest installed more as a test runner, but we don't really use assertions for now. We use it more to gather and report numbers.
