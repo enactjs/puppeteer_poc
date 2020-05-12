@@ -1,13 +1,14 @@
 const puppeteer = require('puppeteer');
 
-let browser;
+let browser, context;
 
 global.beforeAll(async () => {
 	browser = await puppeteer.launch();
+	context = await browser.createIncognitoBrowserContext();
 });
 
 global.beforeEach(async () => {
-	const newPage = await browser.newPage();
+	const newPage = await context.newPage();
 
 	await newPage.setViewport({
 		width: 1920,
@@ -24,5 +25,6 @@ global.afterEach(async () => {
 });
 
 global.afterAll(async () => {
+	await context.close();
 	await browser.close();
 });
