@@ -1,7 +1,7 @@
 import {ActivityPanels, Panel} from '@enact/moonstone/Panels';
-import React from 'react';
+import {Component} from "react";
 
-class PanelsView extends React.Component {
+class PanelsView extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {

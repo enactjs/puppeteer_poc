@@ -1,4 +1,3 @@
-import React from 'react';
 import kind from '@enact/core/kind';
 import UiVirtualListJS, {VirtualListNative as UiVirtualListNative} from '@enact/ui/VirtualList';
 import VirtualListJS, {VirtualListNative} from '@enact/moonstone/VirtualList';

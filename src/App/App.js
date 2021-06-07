@@ -1,6 +1,5 @@
 import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
-import React from 'react';
 import Picker from '../views/Picker';
 import ScrollerPanel from '../views/ScrollerPanel';
 import Panels from '../views/Panels';

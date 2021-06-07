@@ -1,5 +1,4 @@
 import kind from '@enact/core/kind';
-import React from 'react';
 import ExpandableItem from '@enact/moonstone/ExpandableItem';
 
 const ExpandableItemView = kind({

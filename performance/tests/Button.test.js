@@ -7,21 +7,21 @@ describe('Button', () => {
 		it('animates', async () => {
 			const filename = getFileName('Button');
 			await page.goto('http://localhost:8080/button');
-			await page.tracing.start({path: filename, screenshots: false});
-			await page.waitFor(500);
+			await page.tracing.start({path: filename, screenshots: true});
+			await page.waitForTimeout(500);
 
 			await page.click('#button'); // to move mouse on the button.
 			await page.mouse.down();
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.mouse.up();
 			await page.mouse.down();
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.mouse.up();
 			await page.mouse.down();
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.mouse.up();
 			await page.mouse.down();
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.mouse.up();
 
 			await page.tracing.stop();
@@ -42,18 +42,18 @@ describe('Button', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#button');
 			await page.focus('#button');
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.keyboard.down('Enter');
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.keyboard.up('Enter');
 			await page.keyboard.down('Enter');
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.keyboard.up('Enter');
 			await page.keyboard.down('Enter');
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.keyboard.up('Enter');
 			await page.keyboard.down('Enter');
-			await page.waitFor(200);
+			await page.waitForTimeout(200);
 			await page.keyboard.up('Enter');
 
 			await page.tracing.stop();

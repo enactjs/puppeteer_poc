@@ -1,5 +1,5 @@
 import kind from '@enact/core/kind';
-import React from 'react';
+
 import GridListImageItem from '@enact/moonstone/GridListImageItem';
 
 const GridListImageItemView = kind({
