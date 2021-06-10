@@ -90,23 +90,17 @@ describe( 'Scroller', () => {
 		}
 	});
 
-
 	it('scroll down with 5-way with Scroller Native', async () => {
 		const filename = getFileName('ScrollerNative');
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/scrollerMultipleChildren?count=100&type=ScrollerNative');
 		await page.waitForSelector('#Scroller');
-		const item = '[class^="Item_item"]';
-		await page.focus(item);
 
-		for (let i = 0; i < 300; i++) {
+		for (let i = 0; i < 100; i++) {
 			await page.keyboard.down('ArrowDown');
 			await page.waitFor(10);
 		}
-
-		await page.waitFor(2000);
-
 		await page.tracing.stop();
 
 		const actual = FPS(filename);

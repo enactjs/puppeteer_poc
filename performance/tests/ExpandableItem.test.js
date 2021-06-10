@@ -5,7 +5,7 @@ const TestResults = require('../TestResults');
 describe('ExpandableItem', () => {
 	it('open and close', async () => {
 		const filename = getFileName('ExpandableItem');
-		const openClose = '[class^="ExpandableItem_expandableItem"]';
+		const openClose = '[class^="testExpandable"]';
 
 		await page.goto('http://localhost:8080/expandableItem');
 		await page.tracing.start({path: filename, screenshots: false});
@@ -34,7 +34,7 @@ describe('ExpandableItem', () => {
 
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/expandableItem');
-		await page.waitFor(2000);
+		// await page.waitFor(2000);
 
 		await page.tracing.stop();
 

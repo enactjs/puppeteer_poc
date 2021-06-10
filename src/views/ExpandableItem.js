@@ -5,11 +5,13 @@ const ExpandableItemView = kind({
 	name: 'ExpandableItemView',
 
 	render: () => (
-		<ExpandableItem
-			title="test"
-		>
-			This can be any type of content you might want to render inside a labeled expandable container
-		</ExpandableItem>
+		<div className='testExpandable'>
+			<ExpandableItem
+				title="test"
+			>
+				This can be any type of content you might want to render inside a labeled expandable container
+			</ExpandableItem>
+		</div>
 	)
 });
 

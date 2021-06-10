@@ -3,7 +3,9 @@ const puppeteer = require('puppeteer');
 let browser;
 
 global.beforeAll(async () => {
-	browser = await puppeteer.launch();
+	browser = await puppeteer.launch({
+		headless: true
+	});
 });
 
 global.beforeEach(async () => {

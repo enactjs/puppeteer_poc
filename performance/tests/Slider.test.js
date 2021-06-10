@@ -10,7 +10,7 @@ describe('Slider', () => {
 			await page.tracing.start({path: filename, screenshots: false});
 			await page.waitForSelector('#slider');
 			const {x: posX, y: posY} = await page.evaluate(() => {
-				const knobElement = document.querySelector('[class^="Slider_knob"]');
+				const knobElement = document.querySelector('[class^="enact_ui_Slider_Slider_knob "]');
 				const {x, y} = knobElement.getBoundingClientRect();
 				return {x, y};
 			});

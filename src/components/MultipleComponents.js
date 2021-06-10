@@ -7,7 +7,7 @@ const MultipleComponents = ({location}) => {
 	const count = parseInt(search.count) || 1;
 
 	for (let index = 0; index < count; index++) {
-		arr.push(<Item key={index}>Item {index}</Item>);
+		arr.push(<Item className='itemScroller' key={index}>Item {index}</Item>);
 	}
 
 	return arr;

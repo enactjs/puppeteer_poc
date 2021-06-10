@@ -5,7 +5,7 @@ const TestResults = require('../TestResults');
 describe('Panels', () => {
 	it('change panel', async () => {
 		const filename = getFileName('Panels');
-		const panel = '[class^="Panel_body"]';
+		const panel = '[class^="enact_moonstone_Panels_Panels_panels"]';
 
 		await page.goto('http://localhost:8080/panels');
 		await page.tracing.start({path: filename, screenshots: false});

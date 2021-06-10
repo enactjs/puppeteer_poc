@@ -9,12 +9,11 @@ describe('Item', () => {
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/item');
 		await page.waitForSelector('#item');
-		await page.waitFor(2000);
 		await page.tracing.stop();
 
 		const actualMount = Mount(filename, 'Pure');
 
-		TestResults.addResult({component: 'Button', type: 'Mount', actualValue: actualMount});
+		TestResults.addResult({component: 'Item', type: 'Mount', actualValue: actualMount});
 	});
 });
 

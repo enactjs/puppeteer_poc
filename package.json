@@ -48,7 +48,7 @@
 		"devtools-timeline-model": "https://github.com/paulirish/devtools-timeline-model.git#latestbump",
 		"jest": "^24.1.0",
 		"prettier": "^1.15.3",
-		"puppeteer": "^10.0.0",
+		"puppeteer": "^1.11.0",
 		"rimraf": "^2.6.3",
 		"wait-on": "^3.2.0"
 	}

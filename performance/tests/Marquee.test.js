@@ -5,13 +5,13 @@ const TestResults = require('../TestResults');
 describe('Marquee', () => {
 	it('should start marquee on hover', async () => {
 		const filename = getFileName('Marquee');
-		const MarqueeText = '[class^="Marquee"]';
+		const MarqueeText = '[class^="testMarquee"]';
 
 		await page.goto('http://localhost:8080/marquee');
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.waitForSelector('#marquee');
 		await page.hover(MarqueeText);
-		await page.waitFor(500);
+		await page.waitFor(1000);
 
 		await page.tracing.stop();
 
@@ -28,7 +28,6 @@ describe('Marquee', () => {
 		await page.tracing.start({path: filename, screenshots: false});
 		await page.goto('http://localhost:8080/marquee');
 		await page.waitForSelector('#marquee');
-		await page.waitFor(2000);
 
 		await page.tracing.stop();
 

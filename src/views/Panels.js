@@ -21,7 +21,7 @@ class PanelsView extends Component {
 				<Panel id="panel-1" onClick={this.handleClick}>1</Panel>
 				<Panel id="panel-2" onClick={this.handleClick}>2</Panel>
 			</ActivityPanels>
-		);
+			);
 	}
 }
 

@@ -24,32 +24,30 @@ const Mount = (filename, component) => {
 	const model = new DevtoolsTimelineModel(events);
 	const results = model.timelineModel();
 
-	const getCircularReplacer = () => {
-		const seen = new WeakSet();
-		return (key, value) => {
-			if (typeof value === "object" && value !== null) {
-				if (seen.has(value)) {
-					return;
-				}
-				seen.add(value);
-			}
-			return value;
-		};
-	};
-
-	fs.writeFile('data.txt', JSON.stringify(model, getCircularReplacer(), 4), {}, () => {
-		//console.log(results);
-
-
-		//console.log(JSON.stringify(model, getCircularReplacer()));
-		return JSON.stringify(model, getCircularReplacer());
-	});
-
-
+	// const getCircularReplacer = () => {
+	// 	const seen = new WeakSet();
+	// 	return (key, value) => {
+	// 		if (typeof value === "object" && value !== null) {
+	// 			if (seen.has(value)) {
+	// 				return;
+	// 			}
+	// 			seen.add(value);
+	// 		}
+	// 		return value;
+	// 	};
+	// };
+	//
+	// fs.writeFile('data.txt', JSON.stringify(model, getCircularReplacer(), 4), {}, () => {
+	// 	//console.log(results);
+	//
+	//
+	// 	//console.log(JSON.stringify(model, getCircularReplacer()));
+	// 	return JSON.stringify(model, getCircularReplacer());
+	// });
 
 	const userTiming = Array.from(results._namedTracks.values())[0];
 	const timingEvents = userTiming.asyncEvents;
-console.log(userTiming);
+
 	// retrieve mount timing
 	const mountTiming = timingEvents.find((item) => item.name === `⚛ ${component} [mount]`).duration;
 
@@ -60,6 +58,8 @@ const Update = (filename, component) => {
 	const events = fs.readFileSync(filename, 'utf8');
 	const model = new DevtoolsTimelineModel(events);
 	const results = model.timelineModel();
+
+
 
 	const userTiming = Array.from(results._namedTracks.values())[0];
 	const timingEvents = userTiming.asyncEvents;
